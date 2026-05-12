@@ -2,21 +2,23 @@
 
 Paste everything below into a fresh Lovable project.
 
-Replace `REPLACE_WITH_GITHUB_REPO_URL` with this handoff repo after pushing it to GitHub.
+The GitHub handoff repo is already filled in below.
 
 ---
 
 Before you start, clone and read this curated handoff repository fully:
 
-`REPLACE_WITH_GITHUB_REPO_URL`
+`https://github.com/mwoodward5/rocket-site-factory-handoff`
 
-Read `STRUCTURE.md` first, then `WIRING_CONTRACT.md`, then `spec/KIT_ENGINE_SPEC.md`. The `providers/` folder contains tested provider wrapper patterns. The `templates/reference-sites/` folder contains real generated-site references. The `prompts/` folder contains the premium renderer and cinematic standards. Do not rebuild from the old Vercel cockpit UI. Build a fresh Lovable-native application using these files only as the source-of-truth reference.
+Read `STRUCTURE.md` first, then `UI_DIRECTION.md`, then `SUPASTARTER_DREAMFORGE_INTEGRATION.md`, then `WIRING_CONTRACT.md`, then `spec/KIT_ENGINE_SPEC.md`. The `source-maps/supastarter/` folder is the SaaS/admin/billing reference. The `source-maps/dream-forge-single-pass/` folder is the builder/queue/credit-wallet reference. The `providers/` folder contains tested provider wrapper patterns. The `templates/reference-sites/` folder contains real generated-site references. The `prompts/` folder contains the premium renderer and cinematic standards. Do not rebuild from the old Vercel cockpit UI. Build a fresh Lovable-native application using these files only as the source-of-truth reference.
 
 Also read `REFERENCE_BUILDS.md`. The Ricardo URLs listed there are live reference builds that show current one-page local-business output. Use them to understand page rhythm, CTA placement, and service structure. Do not preserve Vercel as the hosting target.
 
 Build me a production-grade web app called **Rocket Site Factory** for Woodward Software Systems.
 
-This is a Lovable-style site builder for local service businesses. I am the operator. My clients log into their own dashboards to edit their site, manage billing, view leads, and use AI tools.
+The previous Vercel/DreamForge UI is rejected. It looked like a technical debug console and was not understandable as a real website builder. Do not copy that UI. The new product must feel like Lovable or better: visual, obvious, preview-first, chat-driven, and easy for a collaborator or customer to understand.
+
+This is a Lovable-style site builder for local service businesses. I am the operator. My clients log into their own dashboards to edit their site, manage billing, view leads, buy credits, and use an AI website assistant.
 
 ## Stack
 
@@ -27,11 +29,28 @@ This is a Lovable-style site builder for local service businesses. I am the oper
 - Data collection: Firecrawl, Bright Data, Google Places
 - Hosting: Lovable deploy
 
+Use Supastarter's patterns as the SaaS reference: auth, magic links, passkeys, organizations/collaborators, user settings, billing settings, Stripe checkout, Stripe customer portal, subscriptions, purchases, and webhooks.
+
+Use DreamForge's patterns as the builder reference: template kits, business intake, build jobs, wallet/credits, optimization opportunities, chat patch previews, template matching, recipe building, and cost estimation.
+
 ## Two Faces of the App
 
 ### Operator Cockpit
 
-The cockpit must feel like a Lovable-style editor.
+The cockpit must feel like Lovable itself, not like a DevOps dashboard.
+
+First screen:
+
+- dark Lovable-style sidebar
+- "Created by me" / project gallery card grid
+- search and simple filters
+- large clean centered build prompt
+- prompt box controls: `+` attachment button, Plan/Build selector, microphone, send button
+- no visible provider/debug clutter on the first screen
+
+This clean build box is the most important UI element. It should feel like the reference Lovable home screen: obvious, calm, and ready for one instruction.
+
+After a project is opened or generated, use the editor layout below.
 
 Three columns:
 
@@ -39,8 +58,8 @@ Three columns:
    - avatar and New Site button
    - searchable site list
    - each row shows logo thumbnail, business name, and status pill: draft, live, paused, archived
-   - bottom multimodal chat input with text, paperclip, mic, plus-menu
-   - plus-menu checkboxes: Use Firecrawl, Use Bright Data, Use Google Places, Generate hero image, Generate logo
+   - bottom multimodal chat input with the same simple pattern: text, `+`, Plan/Build, mic, send
+   - advanced plus-menu checkboxes: Use Firecrawl, Use Bright Data, Use Google Places, Generate hero image, Generate logo
 
 2. Center preview:
    - giant live preview iframe
@@ -67,6 +86,8 @@ Client admin includes:
 - AI Assistant
 - Domain connection
 
+The client admin must include a credit wallet. A client should be able to buy credits, ask the site assistant for a change, see a plain-English preview and credit cost, approve it, and have the change applied to their site.
+
 RLS must lock clients to their own site only.
 
 ## Database
@@ -81,6 +102,19 @@ Use the tables in `WIRING_CONTRACT.md` exactly:
 - messages
 - add_ons
 - activity_log
+
+Also include the Supastarter/DreamForge extension tables described in `SUPASTARTER_DREAMFORGE_INTEGRATION.md`:
+
+- accounts or client_orgs
+- subscriptions
+- credit_purchases
+- wallets
+- wallet_ledger
+- kits
+- intakes
+- build_jobs
+- optimization_opportunities
+- site_patch_previews
 
 ## Edge Functions
 
@@ -185,6 +219,7 @@ Create these products/prices on setup:
 - Command palette on Cmd/Ctrl+K.
 - Multimodal input must support file upload, image paste, and voice input.
 - Provider failures must show clear operator messages and still allow manual completion.
+- Advanced/provider controls must be hidden behind menus or settings. The main product surface is a simple build/chat box plus preview.
 
 ## Done Criteria
 
@@ -198,6 +233,8 @@ When complete, I can:
 6. Publish it.
 7. Open the client `/admin`.
 8. See billing, leads, editor, and AI assistant.
+9. Buy credits in the client admin.
+10. Ask for a blog/service page/photo/SEO upgrade and see a credit-priced preview before approving.
 
 Return:
 

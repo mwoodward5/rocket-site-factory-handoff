@@ -1,0 +1,7 @@
+- **Architecture Fix**: Resolved silent failures in `lib/dream-forge/enrichment.ts` by implementing the missing `BrightDataProvider` class and establishing a priority routing chain: Bright Data → DataForSEO → SerpAPI → googlehtml.
+- **New Provider Classes**: Added `lib/providers/bright-data.ts` (Bright Data REST API with Bearer auth) and `lib/providers/dataforseo.ts` (HTTP Basic auth) to handle SERP and keyword metrics respectively.
+- **Diagnostic Endpoints**: Created `app/api/admin/providers/route.ts` for live status checks and `app/api/admin/providers/test/route.ts` to validate connectors with negligible cost (~$0.0006).
+- **Configuration Corrections**: Identified and documented two critical production issues: `BRIGHT_DATA_ZONE` must be `serp_api1` (removing trailing newlines) and `DATAFORSEO_LOGIN/PASSWORD` must be populated in environment variables.
+- **Admin UI Updates**: Integrated a "Provider Status" pill card into `app/admin/page.tsx` to visually indicate configuration states (configured vs. unconfigured) for Bright Data, DataForSEO, Firecrawl, and Pexels.
+- **Cost Model**: Defined the enrichment cost structure as ~$0.003 per site for Bright Data SERP/GBP lookup plus ~$0.0005 for DataForSEO metrics, totaling under half a cent per site.
+- **Deployment Prerequisites**: Requires manual environment variable injection (`BRIGHT_DATA_API_KEY`, `BRIGHT_DATA_ZONE`, `DATAFORSEO_LOGIN`, `DATAFORSEO_PASSWORD`) on both `wss-dream-forge` and `rocket-serps` before re-rendering showcase sites to unlock real competitor data.
