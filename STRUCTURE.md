@@ -1,9 +1,21 @@
-# Structure — what every folder is for
+# Structure - what every folder is for
 
-> Read this first. Then read `WIRING.md`. Then build.
+> Read this first. Then read `UI_DIRECTION.md`, `SUPASTARTER_DREAMFORGE_INTEGRATION.md`, `WIRING_CONTRACT.md`, and `LOVABLE_MASTER_PROMPT.md`. Then build.
+
+## Product Direction
+
+This repository is a curated handoff for a new Lovable-native build of **Rocket Site Factory**.
+
+The previous Vercel/DreamForge cockpit UI is rejected. Do not copy its dense debug-console layout, "AI council" panels, credit warnings, lane terminology, or generation-preflight screens. Use the old code only for architecture, provider wiring, data models, and cost/queue concepts.
+
+The target product is:
+
+- Lovable-style editor UX: left chat/site dock, center live preview, right inspector.
+- Supastarter-style SaaS/admin foundation: auth, organizations, client access, billing, subscriptions, customer portal.
+- DreamForge-style builder engine: kits, business intake, credit wallet, build jobs, optimization opportunities, chat patch previews, provider enrichment, and cost estimation.
 
 ## `/providers/`
-**Tested API client wrappers — reuse, do not rebuild.**
+**Tested API client wrappers - reuse the contracts and behavior.**
 
 | File | What it does |
 |---|---|
@@ -19,7 +31,32 @@
 | `types.ts` | Shared TypeScript types — the contracts every provider returns. |
 | `index.ts` | Barrel export. Import from here only. |
 
-These files are TypeScript and assume a Node runtime, which fits Supabase Edge Functions cleanly. Drop them into `/supabase/functions/_shared/providers/`.
+These files are TypeScript and assume a Node runtime. In Lovable/Supabase, port the contracts into `/supabase/functions/_shared/providers/` or the closest generated equivalent.
+
+## `/source-maps/supastarter/`
+**Billing, auth, subscriptions, customer portal, and account-management reference.**
+
+These files come from the Supastarter boilerplate and show how the paid SaaS foundation is supposed to work. Preserve the concepts, not necessarily every path:
+
+- Better Auth config: magic links, social login, passkeys, two-factor, organizations/collaborators.
+- Stripe provider: checkout, customer portal, subscription updates, webhooks, purchases.
+- Prisma schema: users, sessions, accounts, organizations, payments, and subscription-oriented records.
+- UI references: pricing table and customer portal button.
+
+Use this as the foundation for client accounts and billing in the Lovable app.
+
+## `/source-maps/dream-forge-single-pass/`
+**Builder engine, intake, queue, credits, and site-remix reference.**
+
+These files come from the single-pass DreamForge prototype. The UI is not the target, but the concepts are:
+
+- `TemplateKit`, `BusinessIntake`, `BuildJob`, `Wallet`, `Opportunity`, and `ChatPatch`.
+- Template matching and build recipe generation.
+- Credit and cost estimation.
+- Queue-style build jobs.
+- API shapes for build, chat, and wallet checkout.
+
+Use this as the foundation for the site-builder engine, not as the visual design.
 
 ## `/widget/`
 **The pen-FAB edit widget already deployed on live sites.**
@@ -59,9 +96,14 @@ Each subfolder is a complete static one-pager (HTML + CSS + hero image). They sh
 | `ricardo_mm_property_management/` | Concrete + multi-service | Multi-service exterior trades |
 
 ## `/spec/`
-**Design system + admin spec — the source of truth for visual & functional decisions.**
+**Design system + admin spec - the source of truth for visual and functional decisions.**
 
-- `dreamforge_training_manual.md` — the operating manual for the whole factory. Hard rules, providers, gates, anti-patterns.
+- `KIT_ENGINE_SPEC.md` - kit/remix architecture, catalog, classifier, caching, and rollout plan.
+
+## `/archive/`
+**Extracted closeout context from prior DreamForge work.**
+
+This folder contains local extraction/summarization of the DreamForge closeout PDF. Use it as background for provider wiring and status diagnostics. It is not the product UI.
 
 ## `/reference/`
 **Real client briefs as examples of "what a complete brief looks like."**
