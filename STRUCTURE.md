@@ -1,6 +1,6 @@
 # Structure - what every folder is for
 
-> Read this first. Then read `UI_DIRECTION.md`, `SUPASTARTER_DREAMFORGE_INTEGRATION.md`, `WIRING_CONTRACT.md`, and `LOVABLE_MASTER_PROMPT.md`. Then build.
+> Read this first. Then read `UI_DIRECTION.md`, `SOURCE_SCAVENGER_INVENTORY.md`, `SUPASTARTER_DREAMFORGE_INTEGRATION.md`, `WIRING_CONTRACT.md`, and `LOVABLE_MASTER_PROMPT.md`. Then build.
 
 ## Product Direction
 
@@ -57,6 +57,21 @@ These files come from the single-pass DreamForge prototype. The UI is not the ta
 - API shapes for build, chat, and wallet checkout.
 
 Use this as the foundation for the site-builder engine, not as the visual design.
+
+## `SOURCE_SCAVENGER_INVENTORY.md`
+**30,000-foot source map for repurposing prior work.**
+
+This file lists the local/private/public source clusters that should be mined for the Lovable build:
+
+- WSS Visibility / Rocket Control SaaS foundation
+- WSS AI engine drop
+- Open Lovable exports
+- Ad/social connector app
+- bulk ops and generated client repos
+- Rocket Craft / Mission template catalogs
+- paid Lovable design library
+
+Use it as a scavenger map, not as a license to copy rejected UI.
 
 ## `/widget/`
 **The pen-FAB edit widget already deployed on live sites.**

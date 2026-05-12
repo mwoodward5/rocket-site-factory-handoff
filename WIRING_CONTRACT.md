@@ -24,6 +24,18 @@ RESEND_API_KEY=
 TWILIO_ACCOUNT_SID=
 TWILIO_AUTH_TOKEN=
 TWILIO_FROM_NUMBER=
+FACEBOOK_APP_ID=
+FACEBOOK_APP_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+LINKEDIN_CLIENT_ID=
+LINKEDIN_CLIENT_SECRET=
+X_CLIENT_ID=
+X_CLIENT_SECRET=
+YOUTUBE_CLIENT_ID=
+YOUTUBE_CLIENT_SECRET=
+TIKTOK_CLIENT_KEY=
+TIKTOK_CLIENT_SECRET=
 ```
 
 ## Supabase Tables
@@ -197,6 +209,40 @@ TWILIO_FROM_NUMBER=
 - `created_at timestamptz default now()`
 - `updated_at timestamptz default now()`
 
+`template_sources`
+
+- `id uuid primary key`
+- `name text not null`
+- `source_type text check source_type in ('lovable_project','live_site','github_repo','local_archive','manual')`
+- `lovable_project_url text`
+- `live_url text`
+- `github_url text`
+- `thumbnail_asset_id uuid references assets(id) on delete set null`
+- `category text`
+- `vertical text`
+- `style_tags text[] default '{}'`
+- `widgets text[] default '{}'`
+- `sections text[] default '{}'`
+- `credits_used numeric`
+- `public_remixing_enabled boolean default false`
+- `status text check status in ('new','cataloged','reusable','premium','experimental','retired')`
+- `notes text`
+- `created_at timestamptz default now()`
+- `updated_at timestamptz default now()`
+
+`template_sections`
+
+- `id uuid primary key`
+- `template_source_id uuid references template_sources(id) on delete cascade`
+- `section_type text`
+- `name text`
+- `description text`
+- `style_notes text`
+- `reusable boolean default true`
+- `quality_score numeric default 0`
+- `screenshot_asset_id uuid references assets(id) on delete set null`
+- `created_at timestamptz default now()`
+
 `optimization_opportunities`
 
 - `id uuid primary key`
@@ -228,6 +274,101 @@ TWILIO_FROM_NUMBER=
 - `last_status text`
 - `last_error text`
 - `estimated_test_cost_cents integer default 0`
+
+`connectors`
+
+- `id uuid primary key`
+- `site_id uuid references sites(id) on delete cascade`
+- `profile_id uuid references profiles(id)`
+- `provider text not null`
+- `display_name text`
+- `status text check status in ('connected','needs_setup','expired','unavailable','simulated')`
+- `scopes text[] default '{}'`
+- `metadata jsonb not null default '{}'`
+- `token_ref text`
+- `last_checked_at timestamptz`
+- `created_at timestamptz default now()`
+- `updated_at timestamptz default now()`
+
+`social_posts`
+
+- `id uuid primary key`
+- `site_id uuid references sites(id) on delete cascade`
+- `created_by uuid references profiles(id)`
+- `source_page_id uuid references pages(id) on delete set null`
+- `title text`
+- `body text not null`
+- `cta text`
+- `status text check status in ('draft','previewed','approved','scheduled','published','failed')`
+- `scheduled_at timestamptz`
+- `credits_estimated integer default 0`
+- `created_at timestamptz default now()`
+- `updated_at timestamptz default now()`
+
+`media_generations`
+
+- `id uuid primary key`
+- `site_id uuid references sites(id) on delete cascade`
+- `social_post_id uuid references social_posts(id) on delete set null`
+- `kind text check kind in ('image','short_video','story','thumbnail')`
+- `prompt text`
+- `asset_id uuid references assets(id) on delete set null`
+- `status text`
+- `credits_estimated integer default 0`
+- `created_at timestamptz default now()`
+
+`publishing_jobs`
+
+- `id uuid primary key`
+- `site_id uuid references sites(id) on delete cascade`
+- `social_post_id uuid references social_posts(id) on delete cascade`
+- `connector_id uuid references connectors(id) on delete set null`
+- `provider text not null`
+- `status text check status in ('queued','publishing','published','failed','fallback_ready')`
+- `provider_post_id text`
+- `error text`
+- `created_at timestamptz default now()`
+- `updated_at timestamptz default now()`
+
+`call_events`
+
+- `id uuid primary key`
+- `site_id uuid references sites(id) on delete cascade`
+- `lead_id uuid references leads(id) on delete set null`
+- `provider text default 'manual'`
+- `caller_number text`
+- `tracking_number text`
+- `source_url text`
+- `source_campaign text`
+- `duration_seconds integer`
+- `status text check status in ('missed','answered','voicemail','unknown')`
+- `metadata jsonb not null default '{}'`
+- `created_at timestamptz default now()`
+
+`referral_rewards`
+
+- `id uuid primary key`
+- `profile_id uuid references profiles(id)`
+- `site_id uuid references sites(id) on delete set null`
+- `referral_code text unique not null`
+- `referred_email text`
+- `reward_kind text check reward_kind in ('credits','free_pages','discount')`
+- `reward_value integer default 0`
+- `status text check status in ('pending','earned','redeemed','expired')`
+- `created_at timestamptz default now()`
+
+`growth_opportunities`
+
+- `id uuid primary key`
+- `site_id uuid references sites(id) on delete cascade`
+- `kind text check kind in ('seo','calls','leads','social','speed','conversion','content')`
+- `title text not null`
+- `evidence text`
+- `suggested_action text`
+- `estimated_credits integer default 0`
+- `confidence numeric default 0`
+- `status text check status in ('new','previewed','approved','dismissed','completed')`
+- `created_at timestamptz default now()`
 
 ## RLS Rules
 
@@ -373,6 +514,104 @@ Output:
 { "ok": true, "siteId": "uuid", "walletBalance": 42 }
 ```
 
+`connect-social-account`
+
+Input:
+
+```json
+{ "siteId": "uuid", "provider": "facebook|instagram|google-business|linkedin|x|youtube|tiktok|email" }
+```
+
+Output:
+
+```json
+{ "ok": true, "connectorId": "uuid", "status": "connected|needs_setup|simulated", "authUrl": "https://..." }
+```
+
+`preview-social-post`
+
+Input:
+
+```json
+{ "siteId": "uuid", "instruction": "make a post for spring AC tune-ups", "destinationProviders": ["facebook"], "sourcePageId": "uuid" }
+```
+
+Output:
+
+```json
+{ "ok": true, "postId": "uuid", "estimatedCredits": 2, "copy": "...", "mediaPreview": null }
+```
+
+`generate-social-asset`
+
+Input:
+
+```json
+{ "siteId": "uuid", "postId": "uuid", "kind": "image|short_video|story|thumbnail" }
+```
+
+Output:
+
+```json
+{ "ok": true, "mediaGenerationId": "uuid", "assetId": "uuid", "estimatedCredits": 5 }
+```
+
+`publish-social-post`
+
+Input:
+
+```json
+{ "siteId": "uuid", "postId": "uuid", "connectorIds": ["uuid"], "scheduledAt": null }
+```
+
+Output:
+
+```json
+{ "ok": true, "jobs": [{ "id": "uuid", "status": "queued" }] }
+```
+
+`track-call-event`
+
+Input:
+
+```json
+{ "siteId": "uuid", "callerNumber": "+15551234567", "sourceUrl": "https://example.com/service", "status": "answered" }
+```
+
+Output:
+
+```json
+{ "ok": true, "callEventId": "uuid" }
+```
+
+`create-referral-link`
+
+Input:
+
+```json
+{ "profileId": "uuid", "siteId": "uuid", "rewardKind": "credits|free_pages|discount" }
+```
+
+Output:
+
+```json
+{ "ok": true, "referralCode": "ROCKET-ABC123", "rewardText": "Two free pages when your referral signs up." }
+```
+
+`dismiss-or-approve-growth-opportunity`
+
+Input:
+
+```json
+{ "opportunityId": "uuid", "action": "dismiss|preview|approve" }
+```
+
+Output:
+
+```json
+{ "ok": true, "status": "previewed", "estimatedCredits": 10 }
+```
+
 ## Routes
 
 Operator:
@@ -383,6 +622,7 @@ Operator:
 - `/cockpit/intake`
 - `/cockpit/queue`
 - `/cockpit/templates`
+- `/cockpit/connectors`
 - `/cockpit/settings`
 
 Client:
@@ -391,8 +631,12 @@ Client:
 - `/admin/editor`
 - `/admin/billing`
 - `/admin/leads`
+- `/admin/calls`
 - `/admin/domain`
 - `/admin/assistant`
+- `/admin/connectors`
+- `/admin/social`
+- `/admin/growth`
 
 Published site:
 
