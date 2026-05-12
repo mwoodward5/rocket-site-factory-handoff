@@ -1,0 +1,2675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Hill Country Plumbing Co. — Limestone-Country Plumbing, Built Honest · Boerne, TX</title>
+<meta name="description" content="Veteran-owned plumbing in Boerne, TX 78006. Leak repair, drain cleaning, water heaters, repipe, fixture install, emergency calls. Serving the Texas Hill Country seven days a week from 9 AM." />
+<meta name="theme-color" content="#1B1410" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Hill Country Plumbing Co. — Boerne, TX" />
+<meta property="og:description" content="Limestone-country plumbing, built honest. Veteran-owned, Boerne-based, seven days from 9 AM." />
+<meta property="og:image" content="assets/hero-poster.jpg" />
+<meta property="og:url" content="https://hillcountryplumbingco.example/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Hill Country Plumbing Co." />
+<meta name="twitter:description" content="Limestone-country plumbing, built honest. Boerne, TX 78006." />
+<meta name="twitter:image" content="assets/hero-poster.jpg" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="https://hill-country-plumbing.vercel.app/" />
+<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://images.pexels.com" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CDN (Play CDN — fine for a hook demo) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#0D1B2A',
+          navy2: '#162741',
+          sun: '#FFC857',
+          sun2: '#FFE08A',
+          cream: '#F4EEDC',
+          stone: '#A6A19A'
+        },
+        fontFamily: {
+          display: ['Anton','sans-serif'],
+          serif: ['Fraunces','Georgia','serif'],
+          sans: ['"Space Grotesk"','system-ui','sans-serif'],
+          mono: ['"JetBrains Mono"','monospace']
+        }
+      }
+    }
+  };
+</script>
+
+<!-- GSAP + ScrollTrigger via CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+  :root{
+    --navy:#0D1B2A;
+    --navy-2:#162741;
+    --sun:#FFC857;
+    --sun-2:#FFE08A;
+    --cream:#F4EEDC;
+    --ink:#0B1320;
+  }
+  *{ -webkit-font-smoothing:antialiased; }
+  html, body{ background:var(--navy); color:var(--cream); }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Space Grotesk',system-ui,sans-serif; overflow-x:hidden; }
+
+  /* Light mode (auto-applied via JS .light on <html>) */
+  html.light, html.light body{ background:#F4EEDC; color:#0B1320; }
+  html.light .ink-invert{ color:#0B1320; }
+  html.light .surface-card{ background:#fff; color:#0B1320; border-color:rgba(13,27,42,.12); }
+  html.light .border-soft{ border-color:rgba(13,27,42,.10) !important; }
+  html.light .marquee-row{ color:#0B1320; }
+
+  /* Custom cursor + spotlight */
+  .spot{
+    position:fixed; inset:0; pointer-events:none; z-index:60;
+    background: radial-gradient( 360px 360px at var(--mx,50%) var(--my,50%),
+      rgba(255,200,87,.18), rgba(255,200,87,0) 60%);
+    mix-blend-mode: screen; transition:opacity .3s;
+  }
+  html.light .spot{ mix-blend-mode: multiply;
+    background: radial-gradient( 360px 360px at var(--mx,50%) var(--my,50%),
+      rgba(13,27,42,.10), rgba(13,27,42,0) 60%);
+  }
+
+  /* ===== Radial burst hero — concentric expanding rings ===== */
+  .burst{
+    position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
+    -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+            mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+  }
+  .ring{
+    position:absolute; border-radius:9999px; border:1px solid rgba(255,200,87,.22);
+    box-shadow: 0 0 60px rgba(255,200,87,.04) inset;
+    animation: ringPulse 6s ease-out infinite;
+  }
+  @keyframes ringPulse{
+    0%   { transform:scale(.4); opacity:0; }
+    20%  { opacity:.85; }
+    100% { transform:scale(2.1); opacity:0; }
+  }
+  .orb{
+    position:absolute; width:62vmin; height:62vmin; border-radius:9999px;
+    background:
+      conic-gradient(from 0deg,
+        #FFC857, #FFE08A, #0D1B2A, #162741, #FFC857);
+    filter: blur(40px) saturate(140%);
+    animation: spin 22s linear infinite, breathe 6s ease-in-out infinite;
+    opacity:.85;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @keyframes breathe{
+    0%,100%{ transform:scale(1) rotate(0); }
+    50%   { transform:scale(1.06) rotate(180deg); }
+  }
+  .orb-core{
+    position:absolute; width:34vmin; height:34vmin; border-radius:9999px;
+    background: radial-gradient(circle at 35% 30%, #FFE08A, #FFC857 35%, #0D1B2A 75%);
+    box-shadow: 0 0 120px 20px rgba(255,200,87,.35);
+    animation: breathe 5s ease-in-out infinite;
+  }
+  .grain{
+    position:absolute; inset:0; pointer-events:none; opacity:.18; mix-blend-mode:overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Duotone-ish landmark photo behind hero */
+  .duotone-navy{
+    filter: grayscale(1) contrast(1.1) brightness(.7);
+    mix-blend-mode: luminosity;
+    opacity:.55;
+  }
+
+  /* Kinetic name */
+  .kinetic{
+    font-family:'Anton',sans-serif; line-height:.85; letter-spacing:-.01em;
+    text-transform:uppercase;
+  }
+  .kinetic .word{ display:inline-block; overflow:hidden; }
+  .kinetic .char{ display:inline-block; will-change:transform; transform:translateY(110%); }
+
+  /* Reveal */
+  .reveal-line{ overflow:hidden; }
+  .reveal-line > *{ display:inline-block; transform:translateY(110%); }
+
+  /* Tilt card */
+  .tilt{ transform-style:preserve-3d; transition:transform .25s ease; }
+  .tilt-inner{ transform:translateZ(40px); }
+  .tilt:hover{ box-shadow: 0 30px 80px -20px rgba(255,200,87,.25); }
+
+  /* Magnetic CTA */
+  .magnetic{ display:inline-flex; }
+  .btn-primary{
+    background:var(--sun); color:#0B1320; font-weight:700;
+    padding: 1rem 1.6rem; border-radius:9999px; letter-spacing:.02em;
+    box-shadow: 0 12px 40px -10px rgba(255,200,87,.55);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 18px 60px -10px rgba(255,200,87,.7); }
+  .btn-ghost{
+    border:1px solid rgba(244,238,220,.35); color:var(--cream);
+    padding: 1rem 1.6rem; border-radius:9999px;
+    backdrop-filter: blur(8px);
+    transition: all .2s ease;
+  }
+  .btn-ghost:hover{ border-color:var(--sun); color:var(--sun); }
+  html.light .btn-ghost{ color:#0B1320; border-color:rgba(13,27,42,.35); }
+  html.light .btn-ghost:hover{ color:#0D1B2A; border-color:#0D1B2A; }
+
+  /* Marquee */
+  .marquee{ overflow:hidden; }
+  .marquee-row{
+    display:inline-flex; gap:4rem; padding-right:4rem;
+    animation: slide 38s linear infinite;
+    white-space:nowrap;
+  }
+  @keyframes slide{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+  /* Section clip-path wipe */
+  .wipe{ clip-path: inset(100% 0 0 0); }
+
+  /* Nav scrolled state */
+  #nav.scrolled{
+    background: rgba(13,27,42,.78);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(244,238,220,.08);
+  }
+  html.light #nav.scrolled{
+    background: rgba(244,238,220,.78);
+    border-bottom-color: rgba(13,27,42,.08);
+  }
+
+  /* Sticky CTA + ribbon */
+  .ribbon{
+    position:fixed; top:14px; right:14px; z-index:70; display:none;
+    background:linear-gradient(90deg, var(--sun), var(--sun-2));
+    color:#0B1320; font-weight:800; padding:.55rem 1rem; border-radius:9999px;
+    box-shadow: 0 12px 40px -10px rgba(255,200,87,.45);
+    font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
+    transition:transform .2s ease;
+  }
+  .ribbon:hover{ transform:translateY(-2px) scale(1.02); }
+  @media (min-width: 1024px){ .ribbon{ display:inline-flex; } }
+  .stickybar{
+    position:fixed; bottom:0; left:0; right:0; z-index:60; pointer-events:none;
+    display:flex; justify-content:center; padding:14px;
+  }
+  .stickybar > *{ pointer-events:auto; }
+
+  /* Service card outline */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+    border:1px solid rgba(244,238,220,.12); border-radius:24px;
+  }
+  html.light .card{ background: linear-gradient(180deg, #fff, #fff); border-color:rgba(13,27,42,.12); }
+
+  /* Number counter */
+  .counter{ font-family:'Fraunces',serif; font-weight:700; font-feature-settings:"tnum","lnum"; }
+
+  /* About portrait mask (no fake person — silhouette mark) */
+  .portrait{
+    background:
+      radial-gradient(closest-side, rgba(255,200,87,.5), rgba(255,200,87,0) 70%),
+      linear-gradient(135deg, #162741, #0D1B2A);
+    border-radius:50%; aspect-ratio:1; position:relative; overflow:hidden;
+  }
+  .portrait::before{
+    content:""; position:absolute; inset:0;
+    background-image: url("assets/hill-country.jpg");
+    background-size:cover; background-position:center;
+    mix-blend-mode: luminosity; opacity:.45; filter:contrast(1.05) saturate(.7);
+  }
+  .portrait::after{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(closest-side at 50% 55%, rgba(13,27,42,0) 30%, rgba(13,27,42,.85) 75%);
+  }
+  .portrait .badge{
+    position:absolute; left:50%; bottom:14%; transform:translateX(-50%);
+    background:var(--sun); color:#0B1320; font-weight:800;
+    padding:.5rem 1rem; border-radius:9999px; letter-spacing:.04em;
+    font-size:.78rem; text-transform:uppercase;
+    box-shadow: 0 12px 40px -10px rgba(255,200,87,.55);
+  }
+
+  /* Map iframe wrapper */
+  .map-wrap{
+    border-radius:24px; overflow:hidden; border:1px solid rgba(244,238,220,.15);
+    filter: grayscale(.4) contrast(1.05);
+  }
+  html.light .map-wrap{ border-color:rgba(13,27,42,.15); filter:none; }
+
+  /* Particles */
+  .particles{ position:absolute; inset:0; pointer-events:none; }
+  .p-dot{
+    position:absolute; width:3px; height:3px; border-radius:50%;
+    background: rgba(255,200,87,.7); box-shadow: 0 0 12px rgba(255,200,87,.7);
+    animation: rise linear infinite;
+  }
+  @keyframes rise{
+    0%{ transform: translateY(0) translateX(0); opacity:0; }
+    10%{ opacity:.9; }
+    100%{ transform: translateY(-80vh) translateX(20px); opacity:0; }
+  }
+
+  /* Letter-spacing tag */
+  .eyebrow{ letter-spacing:.32em; text-transform:uppercase; font-size:.72rem; color:var(--sun); }
+
+  /* Gallery item */
+  .geo-tile{ position:relative; overflow:hidden; border-radius:22px; }
+  .geo-tile img.photo{ width:100%; height:100%; object-fit:cover; transition: transform .9s ease; display:block; }
+  .geo-tile:hover img.photo{ transform: scale(1.08); }
+  .geo-tile .landmark{
+    position:absolute; inset:0; mix-blend-mode: screen; opacity:.6;
+    background-size:cover; background-position:center;
+    filter: hue-rotate(200deg) saturate(140%);
+  }
+  html.light .geo-tile .landmark{ mix-blend-mode: multiply; opacity:.5; }
+  .geo-tile .duotone{
+    position:absolute; inset:0;
+    background: linear-gradient(140deg, rgba(13,27,42,.78), rgba(255,200,87,.25));
+    mix-blend-mode: hard-light;
+  }
+
+  /* Section divider arc */
+  .arc-divider{
+    height:90px; width:100%;
+    background:
+      radial-gradient(120% 90px at 50% 0, var(--sun) 0, var(--sun) 1px, transparent 2px);
+    opacity:.35;
+  }
+
+  /* Avoid horizontal jump on mobile */
+  @media (max-width: 768px){
+    .orb{ width:80vmin; height:80vmin; }
+    .orb-core{ width:46vmin; height:46vmin; }
+  }
+
+  /* Accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .orb, .orb-core, .ring, .marquee-row, .p-dot{ animation: none !important; }
+  }
+
+  /* =============================================
+     FLAGSHIP 3.0 — EDITORIAL HERITAGE HERO
+     Palette (fresh, NOT navy+sun): limestone / cypress / dusk + copper accent
+     ============================================= */
+  :root{
+    --hc-limestone: oklch(0.93 0.018 78);   /* warm cream-limestone */
+    --hc-cypress:   oklch(0.30 0.038 145);  /* deep cypress green   */
+    --hc-dusk:      oklch(0.18 0.022 35);   /* warm dusk earth-ink  */
+    --hc-copper:    oklch(0.72 0.155 55);   /* burnt copper accent  */
+    --hc-limestone-rgb: 240 232 213;
+    --hc-cypress-rgb:    44  68  56;
+    --hc-dusk-rgb:       30  22  18;
+    --hc-copper-rgb:    214 121  60;
+  }
+
+  /* ----- Hero stage ----- */
+  .f3-hero{
+    position:relative; min-height:100svh; overflow:hidden; isolation:isolate;
+    background: var(--hc-dusk);
+    color: var(--hc-limestone);
+    font-family:'Inter', system-ui, sans-serif;
+  }
+  html.light .f3-hero{ color: var(--hc-limestone); }
+
+  /* Layer 1: looping video */
+  .f3-video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    z-index:0;
+    filter: saturate(.85) contrast(1.08) brightness(.78) sepia(.18);
+    will-change: transform;
+  }
+  /* Ken Burns fallback (used when no video) */
+  .f3-poster-fallback{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:0;
+    animation: f3KenBurns 26s ease-in-out infinite alternate;
+    filter: saturate(.85) contrast(1.08) brightness(.78) sepia(.18);
+  }
+  @keyframes f3KenBurns{
+    0%   { transform: scale(1.04) translate(0,0); }
+    100% { transform: scale(1.14) translate(-1.5%, -1%); }
+  }
+
+  /* Layer 2: gradient veil — multi-stop, palette-tinted */
+  .f3-veil{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:
+      radial-gradient(60% 80% at 18% 28%, rgba(214,121,60,.18), transparent 60%),
+      radial-gradient(70% 100% at 90% 110%, rgba(44,68,56,.55), transparent 65%),
+      linear-gradient(180deg, rgba(30,22,18,.50) 0%, rgba(30,22,18,.30) 35%, rgba(30,22,18,.78) 100%);
+  }
+
+  /* Layer 3: grain (SVG fractal noise) */
+  .f3-grain{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    opacity:.28; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 .55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Layer 4: schematic overlay — hairline topo contours (lane-specific) */
+  .f3-topo{
+    position:absolute; inset:0; z-index:3; pointer-events:none;
+    opacity:.32; mix-blend-mode: screen;
+    will-change: transform;
+  }
+  .f3-topo svg{ width:100%; height:100%; display:block; }
+  .f3-topo path{ stroke: var(--hc-limestone); stroke-width:.6; fill:none; vector-effect: non-scaling-stroke; }
+  .f3-topo .f3-topo-pulse{ animation: f3TopoDash 9s linear infinite; stroke-dasharray: 3 7; }
+  @keyframes f3TopoDash{ to{ stroke-dashoffset: -100; } }
+
+  /* Cursor radial light (desktop only) */
+  .f3-cursor-light{
+    position:absolute; inset:0; z-index:4; pointer-events:none;
+    background: radial-gradient(420px 420px at var(--f3mx, 50%) var(--f3my, 50%),
+                  rgba(214,121,60,.22), rgba(214,121,60,0) 60%);
+    mix-blend-mode: screen;
+    transition: opacity .3s ease;
+  }
+  @media (hover:none){ .f3-cursor-light{ display:none; } }
+
+  /* Hero content layer */
+  .f3-stage{ position:relative; z-index:5; }
+
+  /* Eyebrow row */
+  .f3-eyebrow{
+    display:inline-flex; align-items:center; gap:.85rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem; letter-spacing:.32em; text-transform:uppercase;
+    color: var(--hc-limestone);
+    opacity:.88;
+  }
+  .f3-livedot{
+    display:inline-block; width:8px; height:8px; border-radius:9999px;
+    background: var(--hc-copper);
+    box-shadow: 0 0 0 0 rgba(214,121,60,.65);
+    animation: f3Pulse 2.2s ease-out infinite;
+  }
+  @keyframes f3Pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(214,121,60,.55); }
+    70%{ box-shadow: 0 0 0 12px rgba(214,121,60,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(214,121,60,0); }
+  }
+  .f3-eyebrow-rule{ width:42px; height:1px; background: rgba(240,232,213,.45); }
+
+  /* Headline — asymmetric oversized first word, serif drama, hairlines */
+  .f3-headline{
+    font-family:'Cormorant Garamond', 'Fraunces', Georgia, serif;
+    color: var(--hc-limestone);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.018em;
+    font-size: clamp(46px, 7.8vw, 132px);
+    margin: 0;
+  }
+  .f3-headline .f3-word{
+    display:inline-block;
+    vertical-align: baseline;
+    padding: 0 .03em;
+  }
+  .f3-headline .f3-word > span{
+    display:inline-block; transform: translateY(40px);
+    opacity:0; will-change: transform, opacity;
+  }
+  .f3-headline.is-revealed .f3-word > span{
+    transform: translateY(0); opacity:1;
+    transition: transform 1100ms cubic-bezier(.2,.7,.2,1), opacity 900ms ease;
+  }
+  .f3-headline .f3-italic{ font-style: italic; font-weight: 400; color: var(--hc-copper); }
+  .f3-headline .f3-outline{
+    color: transparent;
+    -webkit-text-stroke: 1.2px var(--hc-limestone);
+    text-stroke: 1.2px var(--hc-limestone);
+    font-weight: 600;
+  }
+  .f3-headline .f3-mega{ font-size:1.18em; font-weight:600; letter-spacing:-0.03em; }
+  .f3-headline .f3-rule{
+    display:inline-block; width: clamp(60px, 9vw, 140px);
+    height:1px; background: rgba(240,232,213,.55);
+    vertical-align: middle; margin: 0 .35em .18em;
+  }
+
+  /* Sub-deck */
+  .f3-subdeck{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 400;
+    color: rgba(240,232,213,.86);
+    font-size: clamp(18px, 1.55vw, 24px);
+    line-height: 1.45;
+    max-width: 44ch;
+  }
+
+  /* CTAs */
+  .f3-cta-row{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .f3-cta-primary{
+    display:inline-flex; align-items:center; gap:.65rem;
+    background: var(--hc-copper); color: var(--hc-dusk);
+    font-family:'Inter', sans-serif; font-weight: 600;
+    font-size:.92rem; letter-spacing: .02em;
+    padding: .95rem 1.5rem; border-radius: 4px;
+    box-shadow: 0 12px 36px -12px rgba(214,121,60,.55), inset 0 1px 0 rgba(255,255,255,.18);
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    text-decoration: none;
+  }
+  .f3-cta-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 18px 48px -10px rgba(214,121,60,.7), inset 0 1px 0 rgba(255,255,255,.22);
+  }
+  .f3-cta-primary svg{ transition: transform .25s ease; }
+  .f3-cta-primary:hover svg{ transform: translateX(3px); }
+  .f3-cta-ghost{
+    display:inline-flex; align-items:center; gap:.5rem;
+    border:1px solid rgba(240,232,213,.4); color: var(--hc-limestone);
+    font-family:'Inter', sans-serif; font-weight: 500;
+    font-size:.92rem; letter-spacing: .02em;
+    padding: .9rem 1.4rem; border-radius: 4px;
+    backdrop-filter: blur(6px);
+    transition: border-color .25s ease, color .25s ease, background .25s ease;
+    text-decoration: none;
+  }
+  .f3-cta-ghost:hover{ border-color: var(--hc-copper); color: var(--hc-copper); background: rgba(214,121,60,.05); }
+  .f3-cta-primary:focus-visible, .f3-cta-ghost:focus-visible{
+    outline: 2px solid var(--hc-copper); outline-offset: 3px;
+  }
+
+  /* Signature Widget — Fixed-Fee Quote Configurator */
+  .f3-widget{
+    position: relative;
+    background: rgba(30,22,18,.58);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid rgba(240,232,213,.16);
+    border-radius: 6px;
+    padding: 22px 22px 20px;
+    box-shadow:
+      0 30px 80px -30px rgba(0,0,0,.7),
+      inset 0 1px 0 rgba(240,232,213,.08);
+    overflow:hidden;
+    color: var(--hc-limestone);
+    font-family:'Inter', sans-serif;
+  }
+  .f3-widget::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(120% 80% at 0% 0%, rgba(214,121,60,.14), transparent 50%),
+                radial-gradient(120% 80% at 100% 100%, rgba(44,68,56,.20), transparent 55%);
+    z-index:0;
+  }
+  .f3-widget > *{ position:relative; z-index:1; }
+  .f3-widget-head{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom: 1px solid rgba(240,232,213,.12);
+    padding-bottom: 12px; margin-bottom: 16px;
+  }
+  .f3-widget-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 1.4rem; line-height:1.1; font-weight:500;
+  }
+  .f3-widget-title small{
+    display:block; font-family:'JetBrains Mono', monospace;
+    font-size: .62rem; letter-spacing:.28em; text-transform:uppercase;
+    color: rgba(240,232,213,.6); margin-top: 4px;
+  }
+  .f3-widget-live{
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-family:'JetBrains Mono', monospace; font-size:.66rem;
+    letter-spacing:.22em; text-transform:uppercase; color: var(--hc-copper);
+  }
+  .f3-widget-field{ margin-bottom: 14px; }
+  .f3-widget-label{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'JetBrains Mono', monospace; font-size:.66rem;
+    letter-spacing:.22em; text-transform:uppercase;
+    color: rgba(240,232,213,.72); margin-bottom: 8px;
+  }
+  .f3-widget-label b{ color: var(--hc-limestone); font-weight:500; font-family:'Inter', sans-serif; letter-spacing:.04em; text-transform:none; font-size:.78rem; }
+  .f3-seg{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:6px;
+  }
+  .f3-seg-3{ grid-template-columns: repeat(3, 1fr); }
+  .f3-seg-6{ grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 480px){ .f3-seg-6{ grid-template-columns: repeat(6, 1fr); } }
+  .f3-seg button{
+    appearance:none; background: rgba(240,232,213,.05);
+    border:1px solid rgba(240,232,213,.14);
+    color: var(--hc-limestone);
+    font-family:'Inter', sans-serif; font-size:.74rem; font-weight:500;
+    padding: 9px 6px; border-radius: 3px;
+    cursor:pointer;
+    transition: all .2s ease;
+    letter-spacing: .01em;
+    line-height: 1.15;
+  }
+  .f3-seg button:hover{ border-color: rgba(214,121,60,.5); color: var(--hc-copper); }
+  .f3-seg button[aria-pressed="true"]{
+    background: rgba(214,121,60,.16);
+    border-color: var(--hc-copper);
+    color: var(--hc-copper);
+    box-shadow: inset 0 0 0 1px rgba(214,121,60,.4);
+  }
+  .f3-slider{
+    width:100%; -webkit-appearance: none; appearance: none;
+    height: 4px; background: rgba(240,232,213,.16); border-radius: 9999px;
+    outline:none;
+  }
+  .f3-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; appearance: none;
+    width:18px; height:18px; border-radius: 9999px;
+    background: var(--hc-copper);
+    border: 2px solid var(--hc-limestone);
+    box-shadow: 0 4px 10px rgba(0,0,0,.4);
+    cursor: grab;
+  }
+  .f3-slider::-moz-range-thumb{
+    width:18px; height:18px; border-radius: 9999px;
+    background: var(--hc-copper);
+    border: 2px solid var(--hc-limestone);
+    cursor: grab;
+  }
+  .f3-readout{
+    margin-top: 18px; padding: 14px 14px 12px;
+    background: linear-gradient(140deg, rgba(44,68,56,.45), rgba(30,22,18,.5));
+    border: 1px solid rgba(240,232,213,.15);
+    border-radius: 4px;
+  }
+  .f3-readout-row{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .f3-readout-row + .f3-readout-row{ margin-top: 8px; }
+  .f3-readout-label{
+    font-family:'JetBrains Mono', monospace; font-size:.64rem;
+    letter-spacing:.24em; text-transform:uppercase; color: rgba(240,232,213,.7);
+  }
+  .f3-readout-value{
+    font-family:'Cormorant Garamond', serif; font-weight: 600;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum","lnum";
+    color: var(--hc-limestone);
+  }
+  .f3-readout-band{ font-size: 1.8rem; line-height: 1; color: var(--hc-copper); }
+  .f3-readout-sub{ font-size: 1.05rem; line-height: 1.1; }
+  .f3-widget-cta{
+    margin-top: 14px; width:100%;
+    display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+    background: var(--hc-copper); color: var(--hc-dusk);
+    font-family:'Inter', sans-serif; font-weight: 600;
+    font-size:.86rem; letter-spacing: .04em; text-transform:uppercase;
+    padding: 13px 16px; border-radius: 3px;
+    box-shadow: 0 10px 28px -10px rgba(214,121,60,.55);
+    transition: transform .2s ease, box-shadow .2s ease;
+    text-decoration: none;
+  }
+  .f3-widget-cta:hover{ transform: translateY(-1px); box-shadow: 0 14px 36px -8px rgba(214,121,60,.7); }
+
+  /* Hero stats row — 3 CountUps */
+  .f3-stats{
+    display:grid; grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    border-top: 1px solid rgba(240,232,213,.18);
+    padding-top: 18px; margin-top: 26px;
+    max-width: 520px;
+  }
+  .f3-stat-num{
+    font-family:'Cormorant Garamond', serif; font-weight: 500;
+    font-size: clamp(28px, 3.2vw, 44px); line-height: 1;
+    color: var(--hc-copper);
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum","lnum";
+  }
+  .f3-stat-lbl{
+    font-family:'JetBrains Mono', monospace; font-size:.62rem;
+    letter-spacing:.22em; text-transform:uppercase;
+    color: rgba(240,232,213,.65); margin-top: 8px; line-height: 1.4;
+  }
+
+  /* Marquee strip along bottom */
+  .f3-marquee{
+    position:absolute; left:0; right:0; bottom:0; z-index:6;
+    border-top: 1px solid rgba(240,232,213,.14);
+    border-bottom: 1px solid rgba(240,232,213,.14);
+    background: rgba(30,22,18,.55);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+  .f3-marquee-track{
+    display:inline-flex; gap: 3rem; align-items:center;
+    padding: 12px 2rem 12px 0; white-space: nowrap;
+    animation: f3Marquee 42s linear infinite;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem; letter-spacing:.28em; text-transform:uppercase;
+    color: rgba(240,232,213,.78);
+  }
+  .f3-marquee:hover .f3-marquee-track{ animation-play-state: paused; }
+  .f3-marquee-track span.f3-mark{ color: var(--hc-copper); }
+  @keyframes f3Marquee{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .f3-video{ display:none; }
+    .f3-poster-fallback{ animation: none; }
+    .f3-marquee-track{ animation: none; }
+    .f3-topo-pulse{ animation: none; }
+    .f3-livedot{ animation: none; }
+    .f3-headline.is-revealed .f3-word > span{ transition: opacity .4s ease; transform: none; }
+  }
+
+  /* Responsive layout */
+  .f3-grid{
+    display:grid; gap: 40px;
+    grid-template-columns: 1fr;
+    align-items: end;
+  }
+  @media (min-width: 1024px){
+    .f3-grid{
+      grid-template-columns: minmax(0, 1.4fr) minmax(360px, 1fr);
+      gap: 56px;
+    }
+  }
+  .f3-hero-inner{
+    padding: clamp(108px, 14vh, 160px) clamp(20px, 4vw, 56px) 88px;
+    max-width: 1440px; margin: 0 auto;
+  }
+  @media (max-width: 640px){
+    .f3-hero-inner{ padding-bottom: 110px; }
+    .f3-stats{ grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  }
+
+  /* ============================================================
+     PASS 3 — EDITORIAL HERITAGE 2.0 AMPLIFICATION
+     Putting Green contour board + AdClimber holographic accent
+     ============================================================ */
+  :root{
+    --hc-limestone:#E9DCC3;
+    --hc-cypress:#2F3B2D;
+    --hc-dusk:#1B1410;
+    --hc-copper:#B8702A;
+    --hc-copper-glow:#E29A4E;
+  }
+
+  /* Skip link */
+  .skip-link{
+    position:fixed; top:-100px; left:16px; z-index:200;
+    background:var(--hc-copper); color:#0B1320;
+    padding:10px 14px; border-radius:8px; font-weight:600;
+    font-family:'Space Grotesk',sans-serif; font-size:13px;
+    transition:top .2s ease;
+  }
+  .skip-link:focus{ top:16px; outline:2px solid var(--hc-copper-glow); outline-offset:2px; }
+
+  /* Scroll-progress bar */
+  .p3-progress{
+    position:fixed; top:0; left:0; right:0; height:2px; z-index:90;
+    background:transparent; pointer-events:none;
+  }
+  .p3-progress__fill{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--hc-copper), var(--hc-copper-glow));
+    box-shadow:0 0 12px rgba(226,154,78,.6);
+    transition:width .08s linear;
+  }
+
+  /* AdClimber holographic accent for section headers */
+  .p3-holo{
+    background:linear-gradient(95deg, #E9DCC3 0%, #E29A4E 22%, #B8702A 42%, #E29A4E 62%, #E9DCC3 82%, #E29A4E 100%);
+    background-size:300% 100%;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    animation:p3HoloDrift 16s ease-in-out infinite;
+  }
+  @keyframes p3HoloDrift{
+    0%,100%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+  }
+
+  /* Putting Green contour board (decorative SVG above the FAQ band) */
+  .p3-contour{
+    position:relative; width:100%; height:120px; overflow:hidden;
+    border-top:1px solid rgba(184,112,42,.18);
+    border-bottom:1px solid rgba(184,112,42,.18);
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(184,112,42,.10), transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(233,220,195,.08), transparent 60%);
+  }
+  .p3-contour svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .p3-contour path{ stroke:rgba(184,112,42,.32); stroke-width:1; fill:none; }
+
+  /* Section shell */
+  .p3-section{
+    position:relative; padding:96px clamp(20px,4vw,56px); overflow:hidden;
+  }
+  .p3-section .p3-eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:11px;
+    letter-spacing:.32em; text-transform:uppercase;
+    color:var(--hc-copper); opacity:.85; margin-bottom:14px;
+  }
+  .p3-section h2.p3-h{
+    font-family:'Fraunces','Cormorant Garamond',Georgia,serif;
+    font-size:clamp(34px, 5.6vw, 68px);
+    line-height:1.04; letter-spacing:-.01em; margin-bottom:18px;
+    font-weight:500;
+  }
+  .p3-section h2.p3-h .p3-it{ font-style:italic; font-weight:400; }
+  .p3-section .p3-lede{
+    font-family:'Fraunces',Georgia,serif; font-style:italic;
+    font-size:clamp(17px,1.4vw,21px); line-height:1.55;
+    color:rgba(244,238,220,.78); max-width:62ch;
+  }
+  html.light .p3-section .p3-lede{ color:rgba(11,19,32,.74); }
+
+  /* ========== Job Diagnostic widget ========== */
+  .p3-diag{
+    background:
+      linear-gradient(180deg, rgba(27,20,16,.55), rgba(27,20,16,.22)),
+      radial-gradient(ellipse at 12% 0%, rgba(184,112,42,.16), transparent 50%);
+    border:1px solid rgba(233,220,195,.10);
+    border-radius:24px; padding:clamp(24px,3.5vw,44px);
+    backdrop-filter: blur(14px);
+  }
+  html.light .p3-diag{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65)),
+      radial-gradient(ellipse at 12% 0%, rgba(184,112,42,.10), transparent 50%);
+    border-color:rgba(11,19,32,.10);
+  }
+  .p3-diag__layout{ display:grid; grid-template-columns: 1.15fr .85fr; gap:36px; align-items:start; }
+  @media (max-width: 900px){ .p3-diag__layout{ grid-template-columns:1fr; gap:28px; } }
+
+  .p3-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .p3-chip{
+    appearance:none; cursor:pointer;
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:500;
+    padding:11px 16px; border-radius:999px;
+    border:1px solid rgba(233,220,195,.22);
+    background:rgba(233,220,195,.04);
+    color:rgba(244,238,220,.92);
+    transition:transform .15s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  html.light .p3-chip{ color:#0B1320; border-color:rgba(11,19,32,.16); background:rgba(11,19,32,.03); }
+  .p3-chip:hover{ transform:translateY(-1px); border-color:var(--hc-copper); }
+  .p3-chip:focus-visible{ outline:2px solid var(--hc-copper-glow); outline-offset:2px; }
+  .p3-chip[aria-pressed="true"]{
+    background:linear-gradient(95deg, rgba(184,112,42,.22), rgba(226,154,78,.18));
+    border-color:var(--hc-copper);
+    color:#FFE08A; box-shadow:0 0 0 1px rgba(226,154,78,.32) inset, 0 6px 24px -10px rgba(226,154,78,.4);
+  }
+  html.light .p3-chip[aria-pressed="true"]{ color:#7A4416; }
+
+  .p3-out{
+    border:1px solid rgba(233,220,195,.14);
+    border-radius:18px; padding:24px;
+    background:linear-gradient(180deg, rgba(27,20,16,.5), rgba(27,20,16,.2));
+    min-height:300px;
+  }
+  html.light .p3-out{ background:rgba(255,255,255,.78); border-color:rgba(11,19,32,.08); }
+  .p3-out__label{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:rgba(184,112,42,.85); }
+  .p3-out__title{ font-family:'Fraunces',serif; font-size:clamp(22px,2.4vw,30px); line-height:1.12; margin-top:8px; margin-bottom:4px; }
+  .p3-out__cat{ font-family:'Space Grotesk',sans-serif; font-size:14px; color:rgba(244,238,220,.7); }
+  html.light .p3-out__cat{ color:rgba(11,19,32,.7); }
+
+  .p3-band{
+    margin-top:18px;
+    display:flex; align-items:baseline; gap:14px;
+    padding:14px 16px; border-radius:12px;
+    background:rgba(184,112,42,.10); border:1px solid rgba(184,112,42,.24);
+  }
+  .p3-band__lo,.p3-band__hi{
+    font-family:'JetBrains Mono',monospace; font-feature-settings:"tnum" 1;
+    font-variant-numeric:tabular-nums;
+    font-size:clamp(20px,2vw,26px); color:#FFE08A;
+  }
+  html.light .p3-band__lo, html.light .p3-band__hi{ color:#7A4416; }
+  .p3-band__sep{ color:rgba(244,238,220,.5); }
+  .p3-band__label{ font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:rgba(244,238,220,.55); margin-left:auto; }
+  html.light .p3-band__label{ color:rgba(11,19,32,.55); }
+
+  .p3-urg{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; margin-top:12px; }
+  .p3-urg.watch{ background:rgba(233,220,195,.10); color:#E9DCC3; border:1px solid rgba(233,220,195,.22); }
+  .p3-urg.soon{ background:rgba(184,112,42,.16); color:#FFE08A; border:1px solid rgba(184,112,42,.4); }
+  .p3-urg.asap{ background:rgba(220,80,40,.18); color:#FFB089; border:1px solid rgba(220,80,40,.5); }
+  .p3-urg .dot{ width:7px; height:7px; border-radius:999px; background:currentColor; box-shadow:0 0 8px currentColor; }
+
+  .p3-out__notes{ margin-top:16px; font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:15px; line-height:1.55; color:rgba(244,238,220,.7); }
+  html.light .p3-out__notes{ color:rgba(11,19,32,.7); }
+
+  .p3-out__cta{
+    margin-top:20px; display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px; border-radius:12px;
+    background:linear-gradient(95deg, var(--hc-copper), var(--hc-copper-glow));
+    color:#1B1410; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:.02em;
+    text-decoration:none; box-shadow:0 14px 36px -16px rgba(226,154,78,.6);
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .p3-out__cta:hover{ transform:translateY(-1px); box-shadow:0 18px 42px -18px rgba(226,154,78,.75); }
+
+  /* ========== FAQ section ========== */
+  .p3-faq__list{ display:grid; gap:10px; margin-top:30px; max-width:880px; }
+  .p3-faq__item{
+    border:1px solid rgba(233,220,195,.12);
+    border-radius:14px; overflow:hidden;
+    background:rgba(27,20,16,.32);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  html.light .p3-faq__item{ background:rgba(255,255,255,.6); border-color:rgba(11,19,32,.08); }
+  .p3-faq__item[open]{ border-color:rgba(184,112,42,.42); }
+  .p3-faq__q{
+    cursor:pointer; padding:18px 22px;
+    font-family:'Fraunces',Georgia,serif; font-size:clamp(17px,1.4vw,20px); font-weight:500;
+    list-style:none; display:flex; gap:14px; align-items:flex-start;
+  }
+  .p3-faq__q::-webkit-details-marker{ display:none; }
+  .p3-faq__q::before{
+    content:"+"; font-family:'JetBrains Mono',monospace; font-weight:400;
+    color:var(--hc-copper); flex-shrink:0; margin-top:3px;
+    transition:transform .2s ease;
+  }
+  .p3-faq__item[open] .p3-faq__q::before{ content:"–"; }
+  .p3-faq__a{
+    padding:0 22px 22px 44px;
+    font-family:'Space Grotesk',sans-serif; font-size:15px; line-height:1.65;
+    color:rgba(244,238,220,.74);
+  }
+  html.light .p3-faq__a{ color:rgba(11,19,32,.74); }
+
+  /* ========== Sticky CTA rail (Pass 3 — separate from existing stickybar) ========== */
+  .p3-sticky{
+    position:fixed; right:18px; bottom:18px; z-index:80;
+    transform:translateY(140%);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);
+    display:flex; align-items:center; gap:10px;
+    padding:12px 16px; border-radius:14px;
+    background:linear-gradient(180deg, rgba(27,20,16,.92), rgba(27,20,16,.84));
+    border:1px solid rgba(184,112,42,.4);
+    box-shadow:0 18px 42px -14px rgba(0,0,0,.6), 0 0 0 1px rgba(226,154,78,.16) inset;
+    backdrop-filter:blur(10px);
+  }
+  .p3-sticky.is-visible{ transform:translateY(0); }
+  .p3-sticky__phone{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; color:#FFE08A;
+    text-decoration:none; padding:8px 14px; border-radius:10px;
+    background:linear-gradient(95deg, var(--hc-copper), var(--hc-copper-glow));
+    color:#1B1410; display:inline-flex; align-items:center; gap:8px;
+  }
+  .p3-sticky__msg{ font-family:'Fraunces',serif; font-style:italic; font-size:13px; color:rgba(244,238,220,.88); padding-right:6px; max-width:200px; line-height:1.3; }
+  .p3-sticky__close{
+    background:transparent; border:none; cursor:pointer; color:rgba(244,238,220,.6);
+    font-size:18px; line-height:1; padding:4px 6px;
+  }
+  .p3-sticky__close:hover{ color:#FFE08A; }
+  @media (max-width:640px){
+    .p3-sticky{ left:12px; right:12px; bottom:84px; }
+    .p3-sticky__msg{ display:none; }
+  }
+
+  /* ========== Exit-intent dialog ========== */
+  .p3-modal{
+    position:fixed; inset:0; z-index:120;
+    display:none; align-items:center; justify-content:center;
+    background:rgba(11,8,6,.72); backdrop-filter:blur(8px);
+    opacity:0; transition:opacity .25s ease;
+  }
+  .p3-modal.is-open{ display:flex; opacity:1; }
+  .p3-modal__card{
+    max-width:480px; width:calc(100% - 32px);
+    padding:36px 32px;
+    background:linear-gradient(180deg, #2A1F18 0%, #1B1410 100%);
+    border:1px solid rgba(184,112,42,.3);
+    border-radius:22px;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.7);
+    text-align:left;
+  }
+  .p3-modal__eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:var(--hc-copper); margin-bottom:12px; }
+  .p3-modal__title{ font-family:'Fraunces',serif; font-size:28px; line-height:1.12; color:#F4EEDC; margin-bottom:12px; font-weight:500; }
+  .p3-modal__title em{ font-style:italic; color:#E29A4E; }
+  .p3-modal__body{ font-family:'Space Grotesk',sans-serif; font-size:15px; color:rgba(244,238,220,.78); line-height:1.6; margin-bottom:22px; }
+  .p3-modal__actions{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .p3-modal__cta{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px; border-radius:12px;
+    background:linear-gradient(95deg, var(--hc-copper), var(--hc-copper-glow));
+    color:#1B1410; font-family:'Space Grotesk',sans-serif; font-weight:700;
+    text-decoration:none;
+  }
+  .p3-modal__dismiss{
+    background:transparent; border:none; cursor:pointer;
+    font-family:'Space Grotesk',sans-serif; font-size:13px;
+    color:rgba(244,238,220,.6); padding:8px 4px;
+  }
+  .p3-modal__dismiss:hover{ color:#FFE08A; }
+
+  /* Focus rings universally visible on Pass 3 controls */
+  .p3-faq__q:focus-visible, .p3-out__cta:focus-visible, .p3-sticky__phone:focus-visible,
+  .p3-modal__cta:focus-visible, .p3-modal__dismiss:focus-visible{
+    outline:2px solid var(--hc-copper-glow); outline-offset:3px; border-radius:8px;
+  }
+
+  /* Reduced motion guard */
+  @media (prefers-reduced-motion: reduce){
+    .p3-holo{ animation:none; background:linear-gradient(95deg,#E29A4E,#B8702A); -webkit-background-clip:text; background-clip:text; }
+    .p3-sticky{ transition:none; }
+    .p3-modal{ transition:none; }
+    .p3-progress__fill{ transition:none; }
+  }
+
+  /* ============== Mid-flight: 21st.dev DNA + SERP page-one additions ============== */
+
+  /* Trust badge near hero CTA */
+  .p3-trustbadge{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 14px; border-radius:9999px;
+    border:1px solid rgba(184,112,42,.42);
+    background:rgba(27,20,16,.55);
+    backdrop-filter:blur(8px);
+    font-family:'Space Grotesk',sans-serif; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase; font-weight:600;
+    color:#FFE08A;
+  }
+  .p3-trustbadge em{ font-style:italic; font-weight:400; letter-spacing:.04em; text-transform:none; color:rgba(244,238,220,.7); }
+  .p3-trustbadge svg{ color:var(--hc-copper-glow); }
+  html.light .p3-trustbadge{ background:rgba(255,255,255,.7); color:#7A4416; border-color:rgba(184,112,42,.32); }
+  html.light .p3-trustbadge em{ color:rgba(11,19,32,.6); }
+
+  /* 21st.dev DNA refinement — sticky CTA stronger backdrop-blur, hairline borders */
+  .p3-sticky{ backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+
+  /* Areas Served block (21st.dev hairline + rounded-2xl, group-hover cascade) */
+  .p3-areas{
+    margin-top:32px;
+    border:1px solid rgba(233,220,195,.12);
+    border-radius:18px;
+    padding:clamp(22px,3vw,34px);
+    background:linear-gradient(180deg, rgba(27,20,16,.45), rgba(27,20,16,.18));
+    backdrop-filter:blur(10px);
+  }
+  html.light .p3-areas{ background:rgba(255,255,255,.7); border-color:rgba(11,19,32,.08); }
+  .p3-areas__grid{
+    display:grid; gap:8px;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    margin-top:18px; list-style:none; padding:0;
+  }
+  .p3-areas__item{
+    display:flex; align-items:center; gap:12px;
+    padding:13px 16px;
+    border:1px solid rgba(233,220,195,.10);
+    border-radius:14px;
+    background:rgba(27,20,16,.32);
+    transition:border-color .25s ease, transform .25s ease, background .25s ease;
+  }
+  .p3-areas__item:hover{
+    border-color:rgba(184,112,42,.5);
+    transform:translateY(-1px);
+    background:rgba(184,112,42,.08);
+  }
+  .p3-areas__item:hover .p3-areas__dot{
+    background:var(--hc-copper-glow); box-shadow:0 0 12px rgba(226,154,78,.6); transform:scale(1.2);
+  }
+  .p3-areas__dot{
+    width:8px; height:8px; border-radius:9999px;
+    background:var(--hc-copper); flex-shrink:0;
+    transition:background .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  .p3-areas__name{ font-family:'Fraunces',Georgia,serif; font-size:16px; color:#F4EEDC; font-weight:500; letter-spacing:.005em; }
+  .p3-areas__zip{ margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; color:rgba(184,112,42,.85); }
+  html.light .p3-areas__item{ background:rgba(255,255,255,.65); border-color:rgba(11,19,32,.06); }
+  html.light .p3-areas__name{ color:#0B1320; }
+  html.light .p3-areas__zip{ color:#7A4416; }
+
+  .p3-areas__addr{
+    margin-top:18px; font-style:normal;
+    font-family:'Fraunces',Georgia,serif; font-style:italic;
+    font-size:14px; color:rgba(244,238,220,.6); line-height:1.6;
+  }
+  html.light .p3-areas__addr{ color:rgba(11,19,32,.6); }
+
+  /* AI Overviews bait — <dl><dt><dd> styled answer-first */
+  .p3-aeo{
+    margin-top:36px;
+    border:1px solid rgba(233,220,195,.12);
+    border-radius:18px;
+    padding:clamp(22px,3vw,34px);
+    background:
+      linear-gradient(180deg, rgba(27,20,16,.45), rgba(27,20,16,.18)),
+      radial-gradient(ellipse at 85% 0%, rgba(184,112,42,.10), transparent 50%);
+    backdrop-filter:blur(10px);
+  }
+  html.light .p3-aeo{
+    background:rgba(255,255,255,.7);
+    border-color:rgba(11,19,32,.08);
+  }
+  .p3-aeo dl{ display:grid; gap:18px; margin:18px 0 0 0; }
+  .p3-aeo dt{
+    font-family:'Fraunces',Georgia,serif; font-size:clamp(17px,1.4vw,20px);
+    font-weight:500; letter-spacing:-.005em; color:#F4EEDC; margin-bottom:6px;
+  }
+  .p3-aeo dt::before{
+    content:"Q."; font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.2em; color:var(--hc-copper);
+    margin-right:10px; vertical-align:2px;
+  }
+  .p3-aeo dd{
+    margin:0 0 0 0; font-family:'Space Grotesk',sans-serif;
+    font-size:15px; line-height:1.65; color:rgba(244,238,220,.78);
+  }
+  .p3-aeo dd::before{
+    content:"A."; font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.2em; color:var(--hc-copper-glow);
+    margin-right:10px; vertical-align:2px;
+  }
+  html.light .p3-aeo dt{ color:#0B1320; }
+  html.light .p3-aeo dd{ color:rgba(11,19,32,.74); }
+
+  /* FAQ refinement — 21st.dev DNA: hairline border, rounded-2xl, group-hover cascade */
+  .p3-faq__list{ gap:8px; }
+  .p3-faq__item{
+    border-radius:16px;
+    border:1px solid rgba(233,220,195,.10);
+    backdrop-filter:blur(6px);
+  }
+  .p3-faq__item:hover{ border-color:rgba(184,112,42,.32); }
+  .p3-faq__item:hover .p3-faq__q::before{ color:var(--hc-copper-glow); }
+  .p3-faq__lead{
+    display:block; font-family:'Fraunces',serif; font-style:italic;
+    font-size:16px; line-height:1.5; color:#FFE08A;
+    margin-bottom:8px; font-weight:500;
+  }
+  html.light .p3-faq__lead{ color:#7A4416; }
+  .p3-faq__rest{ display:block; color:rgba(244,238,220,.72); }
+  html.light .p3-faq__rest{ color:rgba(11,19,32,.72); }
+
+  /* tracking-tight / tracking-wide rhythm (21st.dev DNA) */
+  .p3-section h2.p3-h{ letter-spacing:-.018em; }
+  .p3-section .p3-eyebrow{ letter-spacing:.34em; }
+</style>
+
+<!-- fingerprint: hill-country-78006-tier1-archetype-radial-burst -->
+
+<!-- JSON-LD Organization + LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "@id":"https://hillcountryplumbingco.example/#org",
+      "name":"Hill Country Plumbing Co.",
+      "url":"https://hillcountryplumbingco.example/",
+      "logo":"https://hillcountryplumbingco.example/assets/logo.svg",
+      "telephone":"+1-210-901-0236",
+      "sameAs":[]
+    },
+    {
+      "@type":"Plumber",
+      "@id":"https://hillcountryplumbingco.example/#localbusiness",
+      "name":"Hill Country Plumbing Co.",
+      "image":"https://hillcountryplumbingco.example/assets/hill-country.jpg",
+      "telephone":"+1-210-901-0236",
+      "priceRange":"$$",
+      "address":{
+        "@type":"PostalAddress",
+        "addressLocality":"Boerne",
+        "addressRegion":"TX",
+        "postalCode":"78006",
+        "addressCountry":"US"
+      },
+      "geo":{ "@type":"GeoCoordinates","latitude":29.7947,"longitude":-98.7320 },
+      "areaServed":[
+        {"@type":"City","name":"Boerne"},
+        {"@type":"City","name":"Fair Oaks Ranch"},
+        {"@type":"City","name":"Bulverde"},
+        {"@type":"City","name":"San Antonio"},
+        {"@type":"AdministrativeArea","name":"Texas Hill Country"}
+      ],
+      "serviceArea":{
+        "@type":"GeoCircle",
+        "geoMidpoint":{"@type":"GeoCoordinates","latitude":29.7947,"longitude":-98.7320},
+        "geoRadius":"40000"
+      },
+      "openingHoursSpecification":[{
+        "@type":"OpeningHoursSpecification",
+        "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens":"09:00","closes":"17:00"
+      }],
+      "makesOffer":[
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Leak Detection"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Drain Cleaning"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Water Heater Repair & Install"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Slab Leak Repair"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Tankless Water Heater Install"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Whole-Home Repipe & Water Softener"}}
+      ],
+      "url":"https://hill-country-plumbing.vercel.app/"
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://hill-country-plumbing.vercel.app/"},
+        {"@type":"ListItem","position":2,"name":"Services","item":"https://hill-country-plumbing.vercel.app/#services"},
+        {"@type":"ListItem","position":3,"name":"Contact","item":"https://hill-country-plumbing.vercel.app/#contact"}
+      ]
+    },
+    {
+      "@type":"Service","serviceType":"Leak Detection",
+      "provider":{"@id":"https://hillcountryplumbingco.example/#localbusiness"},
+      "areaServed":"Texas Hill Country",
+      "description":"Acoustic, thermal, and pressure-test leak location for slab, wall, and yard lines in Boerne and the greater Hill Country."
+    },
+    {
+      "@type":"Service","serviceType":"Drain Cleaning",
+      "provider":{"@id":"https://hillcountryplumbingco.example/#localbusiness"},
+      "areaServed":"Texas Hill Country",
+      "description":"Hydro-jetting and camera-line inspection for kitchen, bath, main line, and yard drains; root, grease, and scale removal."
+    },
+    {
+      "@type":"Service","serviceType":"Water Heater Service",
+      "provider":{"@id":"https://hillcountryplumbingco.example/#localbusiness"},
+      "areaServed":"Texas Hill Country",
+      "description":"Tank and tankless water heater repair, replacement, and code-correct install sized to actual household usage."
+    },
+    {
+      "@type":"Service","serviceType":"Slab Leak Repair",
+      "provider":{"@id":"https://hillcountryplumbingco.example/#localbusiness"},
+      "areaServed":"Texas Hill Country",
+      "description":"Pinpoint slab leak detection with spot repair or overhead reroute, advised honestly on a case-by-case basis."
+    },
+    {
+      "@type":"Service","serviceType":"Tankless Water Heater Install",
+      "provider":{"@id":"https://hillcountryplumbingco.example/#localbusiness"},
+      "areaServed":"Texas Hill Country",
+      "description":"Gas, electric, or hybrid tankless install — routed, vented, and commissioned correctly for Hill Country water."
+    },
+    {
+      "@type":"Service","serviceType":"Repipe & Water Softening",
+      "provider":{"@id":"https://hillcountryplumbingco.example/#localbusiness"},
+      "areaServed":"Texas Hill Country",
+      "description":"Whole-home softeners for hard limestone water and full PEX or copper repipes for older homes."
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {
+          "@type":"Question","name":"How do I know if I have a slab leak?",
+          "acceptedAnswer":{"@type":"Answer","text":"Common signals are a warm spot on the floor, the sound of running water with every fixture closed, a sudden spike in the water bill, and a meter dial that keeps moving overnight. We confirm with acoustic and pressure tests before any concrete is touched."}
+        },
+        {
+          "@type":"Question","name":"What's the average lifespan of a water heater in Hill Country water?",
+          "acceptedAnswer":{"@type":"Answer","text":"Our limestone water is hard, which shortens tank life. Plan on roughly 8 to 12 years for a tank unit without softening, and 12 to 20 years for a tankless unit that is flushed annually. A whole-home softener typically extends both."}
+        },
+        {
+          "@type":"Question","name":"Do you handle emergency calls outside 9 AM?",
+          "acceptedAnswer":{"@type":"Answer","text":"Our standard window opens at 9 AM, seven days a week. For active leaks or no-water situations we triage by phone and dispatch as soon as a tech can roll — call first so we can advise on the safest shut-off in the meantime."}
+        },
+        {
+          "@type":"Question","name":"What towns and ZIP codes do you serve?",
+          "acceptedAnswer":{"@type":"Answer","text":"We work the greater Hill Country corridor — Boerne (78006, 78015), Fair Oaks Ranch, Bulverde, Comfort, and the north and west reach of San Antonio. If you're on the edge, call and we'll tell you straight whether it's a fit."}
+        },
+        {
+          "@type":"Question","name":"Why is my water pressure low in an older Boerne home?",
+          "acceptedAnswer":{"@type":"Answer","text":"Three common reasons: a failing pressure-reducing valve at the main, mineral-scaled galvanized supply lines, or a partially closed shut-off after a prior repair. We diagnose with a gauge at the hose bib before recommending anything bigger than a regulator."}
+        },
+        {
+          "@type":"Question","name":"Are you licensed and insured in Texas?",
+          "acceptedAnswer":{"@type":"Answer","text":"Yes — Hill Country Plumbing Co. is veteran-owned, fully licensed in Texas, and carries general liability and workers comp coverage. License and insurance details are provided on request before any work begins."}
+        },
+        {
+          "@type":"Question","name":"Do you offer fixed-fee pricing?",
+          "acceptedAnswer":{"@type":"Answer","text":"For most diagnosable jobs, yes. After we see the work in person we quote a flat price before tools come out. Hourly time-and-materials is reserved for open-ended jobs where the scope can't be known until we open a wall or pull a fixture."}
+        },
+        {
+          "@type":"Question","name":"Tankless or tank — which is right for our area?",
+          "acceptedAnswer":{"@type":"Answer","text":"Tank units are cheaper up front and forgiving of mineral content. Tankless saves space, runs longer, and pairs well with a softener — but it must be flushed yearly to last in our water. We size both to your actual peak-minute demand, not just bedroom count."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Speakable + HowTo schema (mid-flight: voice + AEO) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebPage",
+      "@id":"https://hill-country-plumbing.vercel.app/#webpage",
+      "url":"https://hill-country-plumbing.vercel.app/",
+      "name":"Hill Country Plumbing — Boerne, TX plumber",
+      "speakable":{
+        "@type":"SpeakableSpecification",
+        "cssSelector":["#faq-slab .p3-faq__lead", "#faq-emergency .p3-faq__lead"]
+      },
+      "about":{"@id":"https://hillcountryplumbingco.example/#localbusiness"}
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to tell if you have a slab leak in a Boerne home",
+      "description":"A homeowner-friendly check for a suspected slab leak in a Texas Hill Country home before calling a plumber.",
+      "totalTime":"PT10M",
+      "tool":[{"@type":"HowToTool","name":"Water meter access"},{"@type":"HowToTool","name":"Bare hand or thermometer"}],
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Close every fixture in the house","text":"Turn off every faucet, washing machine, dishwasher, ice maker, and irrigation line so nothing is intentionally drawing water."},
+        {"@type":"HowToStep","position":2,"name":"Check the water meter dial","text":"Walk to the curbside water meter and watch the small leak-indicator triangle. If it is spinning with everything off, water is moving somewhere it should not be."},
+        {"@type":"HowToStep","position":3,"name":"Feel the floor for a warm spot","text":"On a slab foundation, hot-line slab leaks often produce a localized warm spot on tile or wood. Bare feet beat shoes for this test."},
+        {"@type":"HowToStep","position":4,"name":"Listen for running water","text":"In a quiet house with no fixtures running, listen at quiet times for a faint hiss or rush of water near baseboards and floor seams."},
+        {"@type":"HowToStep","position":5,"name":"Call before you cut concrete","text":"If two or more signs are present, call a licensed plumber for acoustic and pressure-test pinpointing before any concrete is opened."}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="font-sans" data-pass="3">
+
+<!-- A11y skip link -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Scroll progress bar (Pass 3) -->
+<div class="p3-progress" aria-hidden="true"><div class="p3-progress__fill" id="p3Progress"></div></div>
+
+<!-- cursor spotlight -->
+<div class="spot" id="spot"></div>
+
+<!-- Floating upsell ribbon -->
+<a href="#premier" class="ribbon" aria-label="Unlock Premier Performance">
+  ✦ Unlock Premier Performance
+</a>
+
+<!-- Sticky bottom CTA bar -->
+<div class="stickybar">
+  <a href="tel:+12109010236" class="btn-primary magnetic" data-magnet>📞 (210) 901-0236 · Tap to call</a>
+</div>
+
+<!-- =================== NAV =================== -->
+<header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="nav">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 group" aria-label="Hill Country Plumbing Co. home">
+      <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#FFC857"/>
+            <stop offset="1" stop-color="#FFE08A"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#lg)" stroke-width="2"/>
+        <path d="M22 18 L42 18 L42 30 L46 30 L46 46 L18 46 L18 30 L22 30 Z" fill="url(#lg)"/>
+        <path d="M28 30 L36 30 L36 38 L28 38 Z" fill="#0D1B2A"/>
+      </svg>
+      <div class="leading-tight">
+        <div class="font-display text-lg tracking-wide ink-invert text-cream">HILL COUNTRY</div>
+        <div class="font-mono text-[10px] uppercase tracking-[0.32em] text-sun">Plumbing Co.</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm">
+      <a href="#services" class="hover:text-sun">Services</a>
+      <a href="#proof" class="hover:text-sun">Proof</a>
+      <a href="#gallery" class="hover:text-sun">Field Work</a>
+      <a href="#about" class="hover:text-sun">About</a>
+      <a href="#contact" class="hover:text-sun">Contact</a>
+    </nav>
+    <span class="hidden md:inline-block w-[160px]" aria-hidden="true"></span>
+  </div>
+</header>
+
+<!-- =================== 1. HERO — FLAGSHIP 3.0 / EDITORIAL HERITAGE =================== -->
+<main id="main">
+<section id="top" class="f3-hero" aria-label="Hill Country Plumbing Co. — hero">
+
+  <!-- Layer 1: Looping hero video (silent, autoplay, fallback to Ken Burns poster) -->
+  <video class="f3-video" id="f3Video"
+         autoplay muted loop playsinline preload="metadata"
+         poster="assets/hero-poster.jpg"
+         aria-hidden="true">
+    <source src="assets/hero-loop.mp4" type="video/mp4" />
+  </video>
+  <!-- Reduced-motion / fallback poster (CSS hides video when reduced-motion) -->
+  <img class="f3-poster-fallback" id="f3Poster" src="assets/hero-poster.jpg"
+       alt="" aria-hidden="true" style="display:none;"/>
+
+  <!-- Layer 2: Multi-stop gradient veil -->
+  <div class="f3-veil" aria-hidden="true"></div>
+
+  <!-- Layer 3: SVG grain -->
+  <div class="f3-grain" aria-hidden="true"></div>
+
+  <!-- Layer 4: Schematic overlay — hairline topo contours (Hill Country) -->
+  <div class="f3-topo" id="f3Topo" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <g>
+        <path d="M-50 720 C 180 700, 320 680, 500 700 S 880 760, 1080 720 S 1380 660, 1500 690" />
+        <path d="M-50 640 C 200 620, 360 600, 540 620 S 920 680, 1120 640 S 1400 580, 1500 600" />
+        <path d="M-50 560 C 220 540, 400 520, 580 540 S 960 600, 1160 560 S 1420 500, 1500 510" />
+        <path d="M-50 480 C 240 460, 440 440, 620 460 S 1000 520, 1200 480 S 1440 420, 1500 420" />
+        <path class="f3-topo-pulse" d="M-50 400 C 260 380, 480 360, 660 380 S 1040 440, 1240 400 S 1460 340, 1500 330" />
+        <path d="M-50 320 C 280 300, 520 280, 700 300 S 1080 360, 1280 320 S 1480 260, 1500 240" />
+        <path d="M-50 240 C 300 220, 560 200, 740 220 S 1120 280, 1320 240 S 1500 180, 1520 150" />
+        <path d="M-50 160 C 320 140, 600 120, 780 140 S 1160 200, 1360 160 S 1520 100, 1540 60" />
+      </g>
+      <!-- vertical hairline tick marks -->
+      <g opacity="0.45">
+        <line x1="180" y1="60" x2="180" y2="100" stroke="currentColor" stroke-width="0.5" />
+        <line x1="360" y1="60" x2="360" y2="80"  stroke="currentColor" stroke-width="0.5" />
+        <line x1="540" y1="60" x2="540" y2="100" stroke="currentColor" stroke-width="0.5" />
+        <line x1="720" y1="60" x2="720" y2="80"  stroke="currentColor" stroke-width="0.5" />
+        <line x1="900" y1="60" x2="900" y2="100" stroke="currentColor" stroke-width="0.5" />
+        <line x1="1080" y1="60" x2="1080" y2="80" stroke="currentColor" stroke-width="0.5" />
+        <line x1="1260" y1="60" x2="1260" y2="100" stroke="currentColor" stroke-width="0.5" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- Cursor-reactive radial light (desktop only) -->
+  <div class="f3-cursor-light" id="f3CursorLight" aria-hidden="true"></div>
+
+  <!-- Layer 5–7: Content stage -->
+  <div class="f3-stage">
+    <div class="f3-hero-inner">
+      <div class="f3-grid">
+
+        <!-- LEFT: Eyebrow + Headline + Sub + CTAs + Stats -->
+        <div>
+          <div class="f3-eyebrow" role="doc-subtitle">
+            <span class="f3-livedot" aria-hidden="true"></span>
+            <span>Boerne · TX 78006</span>
+            <span class="f3-eyebrow-rule" aria-hidden="true"></span>
+            <span>Veteran-Owned</span>
+            <span class="f3-eyebrow-rule" aria-hidden="true"></span>
+            <span>Licensed &amp; Insured</span>
+          </div>
+
+          <!-- Headline: asymmetric oversized first word + italic accent + outlined word + hairline rule -->
+          <h1 class="f3-headline" id="f3Headline" aria-label="Limestone-country plumbing, built honest.">
+            <span class="f3-word"><span class="f3-mega">Limestone</span></span><br/>
+            <span class="f3-word"><span>country</span></span>
+            <span class="f3-word"><span class="f3-italic">plumbing,</span></span><br/>
+            <span class="f3-rule" aria-hidden="true"></span>
+            <span class="f3-word"><span>built</span></span>
+            <span class="f3-word"><span class="f3-outline">honest.</span></span>
+          </h1>
+
+          <p class="f3-subdeck" style="margin-top: 28px;">
+            Seven-day dispatch for Boerne, San Antonio, and the Hill Country &mdash;
+            diagnosed on the first visit, priced before a single fitting is touched.
+          </p>
+
+          <div class="f3-cta-row" style="margin-top: 32px;">
+            <a href="tel:+12109010236" class="f3-cta-primary" data-cta="phone" aria-label="Call dispatch at 210-901-0236">
+              Call Dispatch &middot; (210) 901-0236
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="f3-cta-ghost">View Service Area</a>
+            <span class="p3-trustbadge" aria-label="Licensed and insured in Texas">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>Licensed &amp; Insured <em>&middot; Veteran-owned</em></span>
+            </span>
+          </div>
+
+          <!-- 3 CountUps -->
+          <div class="f3-stats" role="list">
+            <div role="listitem">
+              <div class="f3-stat-num" data-f3count="78006" data-f3format="plain">0</div>
+              <div class="f3-stat-lbl">Boerne ZIP<br/>served</div>
+            </div>
+            <div role="listitem">
+              <div class="f3-stat-num" data-f3count="6" data-f3format="plain">0</div>
+              <div class="f3-stat-lbl">Core trades<br/>under one crew</div>
+            </div>
+            <div role="listitem">
+              <div class="f3-stat-num" data-f3count="9" data-f3format="am">0</div>
+              <div class="f3-stat-lbl">AM start ·<br/>seven days</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Signature Widget — Fixed-Fee Quote Configurator -->
+        <aside class="f3-widget" id="f3Widget" aria-label="Fixed-fee quote configurator">
+          <div class="f3-widget-head">
+            <div class="f3-widget-title">
+              Quote the Job
+              <small>Hill Country · Fixed-Fee</small>
+            </div>
+            <div class="f3-widget-live">
+              <span class="f3-livedot" aria-hidden="true"></span> Live
+            </div>
+          </div>
+
+          <!-- Service select -->
+          <div class="f3-widget-field">
+            <div class="f3-widget-label"><span>01 · Service</span><b id="f3SvcLabel">Leak repair</b></div>
+            <div class="f3-seg f3-seg-6" role="group" aria-label="Service type">
+              <button type="button" data-svc="leak"      data-base="285" data-label="Leak repair"        aria-pressed="true">Leak<br/>repair</button>
+              <button type="button" data-svc="drain"     data-base="245" data-label="Drain cleaning"     aria-pressed="false">Drain<br/>clean</button>
+              <button type="button" data-svc="heater"    data-base="525" data-label="Water heater"       aria-pressed="false">Water<br/>heater</button>
+              <button type="button" data-svc="fixture"   data-base="195" data-label="Fixture install"    aria-pressed="false">Fixture<br/>install</button>
+              <button type="button" data-svc="repipe"    data-base="1850" data-label="Repipe"            aria-pressed="false">Repipe<br/>job</button>
+              <button type="button" data-svc="emergency" data-base="345" data-label="Emergency call"    aria-pressed="false">Emergency<br/>call</button>
+            </div>
+          </div>
+
+          <!-- Home age slider — affects multiplier -->
+          <div class="f3-widget-field">
+            <div class="f3-widget-label">
+              <span>02 · Home year built</span>
+              <b><span id="f3YearVal">1995</span></b>
+            </div>
+            <input class="f3-slider" type="range" id="f3Year"
+                   min="1900" max="2025" value="1995" step="1"
+                   aria-label="Home year built"/>
+          </div>
+
+          <!-- Urgency -->
+          <div class="f3-widget-field">
+            <div class="f3-widget-label"><span>03 · Urgency</span><b id="f3UrgLabel">Within a week</b></div>
+            <div class="f3-seg f3-seg-3" role="group" aria-label="Urgency">
+              <button type="button" data-urg="flex"   data-mult="1.0"  data-label="Within a week" aria-pressed="true">Flexible</button>
+              <button type="button" data-urg="24h"    data-mult="1.18" data-label="Within 24 hrs" aria-pressed="false">24 hrs</button>
+              <button type="button" data-urg="today"  data-mult="1.35" data-label="Same day"     aria-pressed="false">Today</button>
+            </div>
+          </div>
+
+          <!-- Readout -->
+          <div class="f3-readout" aria-live="polite">
+            <div class="f3-readout-row">
+              <span class="f3-readout-label">Fixed-fee band</span>
+              <span class="f3-readout-value f3-readout-band" id="f3Band">$285&ndash;$355</span>
+            </div>
+            <div class="f3-readout-row">
+              <span class="f3-readout-label">On-site diagnosis</span>
+              <span class="f3-readout-value f3-readout-sub" id="f3Diag">$0 with repair</span>
+            </div>
+            <div class="f3-readout-row">
+              <span class="f3-readout-label">Truck routing</span>
+              <span class="f3-readout-value f3-readout-sub" id="f3Route">Boerne &middot; 78006</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="f3-widget-cta" id="f3WidgetCta">
+            Lock this quote &middot; Get dispatch
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 8 — marquee strip -->
+  <div class="f3-marquee" aria-hidden="true">
+    <div class="f3-marquee-track" id="f3MarqueeTrack">
+      <span>Drain cleaning</span><span class="f3-mark">◆</span>
+      <span>Water heater service</span><span class="f3-mark">◆</span>
+      <span>Leak repair</span><span class="f3-mark">◆</span>
+      <span>Whole-home repipe</span><span class="f3-mark">◆</span>
+      <span>Fixture install</span><span class="f3-mark">◆</span>
+      <span>Emergency calls · 9 AM – 5 PM, 7 days</span><span class="f3-mark">◆</span>
+      <span>Boerne · Fair Oaks · Bulverde · Comfort · Bergheim</span><span class="f3-mark">◆</span>
+      <span>Veteran-owned · Licensed · Insured</span><span class="f3-mark">◆</span>
+      <!-- duplicate for seamless loop -->
+      <span>Drain cleaning</span><span class="f3-mark">◆</span>
+      <span>Water heater service</span><span class="f3-mark">◆</span>
+      <span>Leak repair</span><span class="f3-mark">◆</span>
+      <span>Whole-home repipe</span><span class="f3-mark">◆</span>
+      <span>Fixture install</span><span class="f3-mark">◆</span>
+      <span>Emergency calls · 9 AM – 5 PM, 7 days</span><span class="f3-mark">◆</span>
+      <span>Boerne · Fair Oaks · Bulverde · Comfort · Bergheim</span><span class="f3-mark">◆</span>
+      <span>Veteran-owned · Licensed · Insured</span><span class="f3-mark">◆</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- =================== 2. SIGNATURE PITCH =================== -->
+<section id="pitch" class="relative py-32 md:py-48 overflow-hidden">
+  <div class="absolute inset-0 -z-10" style="background:linear-gradient(180deg, var(--navy), var(--navy-2));"></div>
+  <!-- light-mode background -->
+  <div class="absolute inset-0 -z-10 hidden" id="pitchLight"></div>
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="font-mono text-xs tracking-[.32em] text-sun mb-6 reveal-line"><span>// SIGNATURE PITCH</span></div>
+    <h2 class="font-serif text-[clamp(36px,6.5vw,96px)] leading-[1.02] tracking-tight" id="pitchHeading">
+      <span class="block">When water goes</span>
+      <span class="block italic text-sun">where it shouldn't,</span>
+      <span class="block">we find it, fix it, and</span>
+      <span class="block">walk you through it.</span>
+    </h2>
+    <p class="mt-10 max-w-2xl text-lg text-cream/75 ink-invert reveal-line">
+      <span>Boerne-based. Hill Country routes. Honest diagnosis before a single fitting is touched.</span>
+    </p>
+  </div>
+</section>
+
+<!-- =================== 3. SERVICES =================== -->
+<section id="services" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-14">
+      <div>
+        <div class="eyebrow mb-3">// What we do</div>
+        <h2 class="font-display text-[clamp(40px,7vw,96px)] leading-[.9] tracking-tight">SIX&nbsp;SERVICES.<br/><span class="text-sun">ONE&nbsp;CREW.</span></h2>
+      </div>
+      <p class="max-w-md text-cream/70 ink-invert">From a slow drip under the cabinet to a slab leak under the foundation — diagnosed on the first visit, priced before work begins.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="serviceGrid">
+      <!-- card 1 -->
+      <article class="card tilt p-7 md:p-8" data-tilt>
+        <div class="tilt-inner">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-xs text-sun">SVC-01</span>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="1.6"><path d="M12 2c3 4 6 7 6 11a6 6 0 1 1-12 0c0-4 3-7 6-11z"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">Leak Detection</h3>
+          <p class="text-cream/70 ink-invert text-sm">Acoustic, thermal, and pressure tests find the exact source — under slab, behind walls, in the yard. No guesswork demo.</p>
+        </div>
+      </article>
+      <!-- card 2 -->
+      <article class="card tilt p-7 md:p-8" data-tilt>
+        <div class="tilt-inner">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-xs text-sun">SVC-02</span>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="1.6"><path d="M4 6h16M6 12h12M8 18h8"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">Drain Cleaning</h3>
+          <p class="text-cream/70 ink-invert text-sm">Hydro-jetting and camera inspection for kitchen, bath, main line, and yard drains. Roots, grease, scale — gone.</p>
+        </div>
+      </article>
+      <!-- card 3 -->
+      <article class="card tilt p-7 md:p-8" data-tilt>
+        <div class="tilt-inner">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-xs text-sun">SVC-03</span>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h6"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">Water Heaters</h3>
+          <p class="text-cream/70 ink-invert text-sm">Tank and tankless install or replacement. Code-aware, vented properly, sized to your actual usage pattern.</p>
+        </div>
+      </article>
+      <!-- card 4 -->
+      <article class="card tilt p-7 md:p-8" data-tilt>
+        <div class="tilt-inner">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-xs text-sun">SVC-04</span>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="1.6"><path d="M3 18h18M6 18V8a6 6 0 1 1 12 0v10M9 18v-6h6v6"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">Slab Leak Repair</h3>
+          <p class="text-cream/70 ink-invert text-sm">Pinpoint detection, spot repair or reroute. Honest call on whether to fix the line or rerun it overhead.</p>
+        </div>
+      </article>
+      <!-- card 5 -->
+      <article class="card tilt p-7 md:p-8" data-tilt>
+        <div class="tilt-inner">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-xs text-sun">SVC-05</span>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="1.6"><path d="M7 3h10v6l3 6v6H4v-6l3-6V3z"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">Tankless Install</h3>
+          <p class="text-cream/70 ink-invert text-sm">Endless hot water, smaller footprint. Gas, electric, or hybrid — we route, vent, and commission it right.</p>
+        </div>
+      </article>
+      <!-- card 6 -->
+      <article class="card tilt p-7 md:p-8" data-tilt>
+        <div class="tilt-inner">
+          <div class="flex items-center justify-between mb-8">
+            <span class="font-mono text-xs text-sun">SVC-06</span>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="1.6"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl mb-2">Softeners &amp; Repipe</h3>
+          <p class="text-cream/70 ink-invert text-sm">Whole-home softeners for Hill Country hard water. Full repipes for older homes — PEX or copper, your call.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Marquee -->
+    <div class="mt-20 marquee border-y border-cream/15 border-soft py-6">
+      <div class="marquee-row font-display text-3xl md:text-5xl tracking-wide text-cream/80">
+        <span>LEAK DETECTION ✦</span><span>DRAIN CLEANING ✦</span><span>WATER HEATERS ✦</span>
+        <span>SLAB LEAK REPAIR ✦</span><span>TANKLESS INSTALL ✦</span><span>WATER SOFTENERS ✦</span>
+        <span>REPIPE ✦</span><span>BOERNE ✦</span><span>SAN ANTONIO ✦</span><span>HILL COUNTRY ✦</span>
+        <!-- duplicate for seamless loop -->
+        <span>LEAK DETECTION ✦</span><span>DRAIN CLEANING ✦</span><span>WATER HEATERS ✦</span>
+        <span>SLAB LEAK REPAIR ✦</span><span>TANKLESS INSTALL ✦</span><span>WATER SOFTENERS ✦</span>
+        <span>REPIPE ✦</span><span>BOERNE ✦</span><span>SAN ANTONIO ✦</span><span>HILL COUNTRY ✦</span>
+      </div>
+    </div>
+
+    <!-- Counters (verifiable / brand-stated, not fake reviews) -->
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div>
+        <div class="counter text-5xl md:text-6xl text-sun" data-count="7">0</div>
+        <div class="text-xs uppercase tracking-[.28em] text-cream/60 ink-invert mt-2">Days a week, open</div>
+      </div>
+      <div>
+        <div class="counter text-5xl md:text-6xl text-sun" data-count="78006">0</div>
+        <div class="text-xs uppercase tracking-[.28em] text-cream/60 ink-invert mt-2">Boerne ZIP</div>
+      </div>
+      <div>
+        <div class="counter text-5xl md:text-6xl text-sun" data-count="9">0</div>
+        <div class="text-xs uppercase tracking-[.28em] text-cream/60 ink-invert mt-2">AM start, every day</div>
+      </div>
+      <div>
+        <div class="counter text-5xl md:text-6xl text-sun" data-count="6">0</div>
+        <div class="text-xs uppercase tracking-[.28em] text-cream/60 ink-invert mt-2">Core services</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 4. PROOF =================== -->
+<section id="proof" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0 -z-10" style="background:linear-gradient(180deg, var(--navy-2), var(--navy));"></div>
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-12 gap-12 items-start">
+      <div class="md:col-span-5">
+        <div class="eyebrow mb-3">// Proof, not hype</div>
+        <h2 class="font-display text-[clamp(36px,5.5vw,72px)] leading-[.95]">WE EARN<br/>EVERY CALL.</h2>
+        <p class="mt-6 text-cream/75 ink-invert">No purchased reviews, no inflated counts. The work speaks. Ask for a referral on your block — chances are a neighbor has our card.</p>
+        <div class="mt-8 flex flex-wrap gap-3 text-xs font-mono">
+          <span class="border border-cream/20 border-soft rounded-full px-3 py-1.5">LICENSED</span>
+          <span class="border border-cream/20 border-soft rounded-full px-3 py-1.5">INSURED</span>
+          <span class="border border-cream/20 border-soft rounded-full px-3 py-1.5">VETERAN-OWNED</span>
+          <span class="border border-cream/20 border-soft rounded-full px-3 py-1.5">BOERNE-LOCAL</span>
+        </div>
+      </div>
+
+      <div class="md:col-span-7 space-y-4">
+        <div class="card p-6 md:p-8 tilt" data-tilt>
+          <div class="tilt-inner">
+            <div class="flex items-center gap-1 text-sun mb-3" aria-label="Five stars">★★★★★</div>
+            <p class="font-serif text-xl leading-snug">"They diagnosed the slab leak before lunch and had me dry by dinner."</p>
+            <div class="mt-4 text-xs font-mono uppercase tracking-[.24em] text-cream/55 ink-invert">— Boerne homeowner · Sample testimonial</div>
+          </div>
+        </div>
+        <div class="card p-6 md:p-8 tilt" data-tilt>
+          <div class="tilt-inner">
+            <div class="flex items-center gap-1 text-sun mb-3" aria-label="Five stars">★★★★★</div>
+            <p class="font-serif text-xl leading-snug">"Quoted before they cut, cleaned up like they were never there."</p>
+            <div class="mt-4 text-xs font-mono uppercase tracking-[.24em] text-cream/55 ink-invert">— Hill Country resident · Sample testimonial</div>
+          </div>
+        </div>
+        <div class="card p-6 md:p-8 tilt" data-tilt>
+          <div class="tilt-inner">
+            <div class="flex items-center gap-1 text-sun mb-3" aria-label="Five stars">★★★★★</div>
+            <p class="font-serif text-xl leading-snug">"Tankless was sized for our actual use, not a sales pitch."</p>
+            <div class="mt-4 text-xs font-mono uppercase tracking-[.24em] text-cream/55 ink-invert">— San Antonio client · Sample testimonial</div>
+          </div>
+        </div>
+        <p class="text-xs text-cream/45 ink-invert font-mono mt-2">// Sample testimonials shown for layout. Real client quotes replace these in the Premier build with verified Google &amp; Yelp imports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 5. GEO-HYBRID GALLERY =================== -->
+<section id="gallery" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div>
+        <div class="eyebrow mb-3">// Field log</div>
+        <h2 class="font-display text-[clamp(40px,6.5vw,96px)] leading-[.9]">WHERE WE WORK,<br/><span class="text-sun">WHAT WE TOUCH.</span></h2>
+      </div>
+      <p class="max-w-md text-cream/70 ink-invert">Limestone country, cypress creeks, old-town Boerne, and the San Antonio skyline beyond. Every job blended into the landscape we serve.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[260px] gap-3">
+      <div class="geo-tile col-span-2 row-span-2">
+        <img class="photo" src="assets/plumber-spanner.jpg" alt="Plumber tightening a fitting with a spanner" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/hill-country.jpg')"></div>
+        <div class="duotone"></div>
+        <div class="absolute bottom-4 left-4 right-4 font-mono text-xs uppercase tracking-[.28em] text-cream">FIELD · BOERNE · LIMESTONE COUNTRY</div>
+      </div>
+      <div class="geo-tile">
+        <img class="photo" src="assets/plumbing-tools.jpg" alt="Plumbing tools laid out on a workbench" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/cypress-creek.jpg')"></div>
+        <div class="duotone"></div>
+      </div>
+      <div class="geo-tile">
+        <img class="photo" src="assets/pipes-system.jpg" alt="Copper pipe assembly inside a mechanical room" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/riverbank.jpg')"></div>
+        <div class="duotone"></div>
+      </div>
+      <div class="geo-tile">
+        <img class="photo" src="assets/plumber-under-sink.jpg" alt="Plumber repairing pipework under a sink" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/limestone-stream.jpg')"></div>
+        <div class="duotone"></div>
+      </div>
+      <div class="geo-tile">
+        <img class="photo" src="assets/plumber-repair.jpg" alt="Hand repair on a residential plumbing line" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/hill-country.jpg')"></div>
+        <div class="duotone"></div>
+      </div>
+      <div class="geo-tile col-span-2">
+        <img class="photo" src="assets/tradesperson.jpg" alt="Tradesperson on a job site" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/riverbank.jpg')"></div>
+        <div class="duotone"></div>
+        <div class="absolute bottom-4 left-4 right-4 font-mono text-xs uppercase tracking-[.28em] text-cream">SERVICE AREA · SAN ANTONIO · HILL COUNTRY</div>
+      </div>
+      <div class="geo-tile">
+        <img class="photo" src="assets/copper-pipes.jpg" alt="Close-up of copper plumbing pipes" loading="lazy" decoding="async"/>
+        <div class="landmark" style="background-image:url('assets/cypress-creek.jpg')"></div>
+        <div class="duotone"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 6. ABOUT / OWNER =================== -->
+<section id="about" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute inset-0 -z-10" style="background:linear-gradient(180deg, var(--navy), var(--navy-2));"></div>
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-12 items-center">
+    <div class="md:col-span-5">
+      <div class="portrait">
+        <div class="badge">Veteran-Owned</div>
+      </div>
+    </div>
+    <div class="md:col-span-7">
+      <div class="eyebrow mb-3">// The crew</div>
+      <h2 class="font-serif italic text-[clamp(32px,4.5vw,60px)] leading-[1.05]">
+        Built in Boerne. <br/>Run by hands<br/>that have actually <br/>been under the slab.
+      </h2>
+      <p class="mt-6 text-cream/75 ink-invert text-lg leading-relaxed">
+        Hill Country Plumbing Co. is a veteran-owned, Boerne-based plumbing &amp; drain crew serving the 78006 corridor, the broader Hill Country, and the north side of San Antonio. We keep the trucks stocked, the diagnoses honest, and the job site clean — the way you'd want it at your own house.
+      </p>
+      <div class="mt-8 grid grid-cols-3 gap-4 text-sm">
+        <div>
+          <div class="font-display text-3xl text-sun">9–5</div>
+          <div class="text-cream/60 ink-invert text-xs uppercase tracking-[.28em] mt-1">Mon–Sun</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl text-sun">Hill</div>
+          <div class="text-cream/60 ink-invert text-xs uppercase tracking-[.28em] mt-1">Country routed</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl text-sun">All</div>
+          <div class="text-cream/60 ink-invert text-xs uppercase tracking-[.28em] mt-1">Six services</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 7. CONTACT =================== -->
+<section id="contact" class="relative py-28 md:py-36 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="eyebrow mb-3">// Get the truck rolling</div>
+        <h2 class="font-display text-[clamp(40px,7vw,96px)] leading-[.9]">CALL US.<br/><span class="text-sun">WE PICK UP.</span></h2>
+        <p class="mt-6 text-cream/75 ink-invert">Dispatch is open every day, 9am to 5pm. Tap to call — a real human picks up, takes the address, and routes the nearest truck.</p>
+
+        <div class="mt-8 space-y-4 text-base">
+          <a href="tel:+12109010236" class="flex items-center gap-3 hover:text-sun">
+            <span class="w-9 h-9 rounded-full grid place-items-center border border-sun/40 text-sun">☎</span>
+            <span class="font-display text-2xl tracking-wide">(210) 901-0236</span>
+          </a>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full grid place-items-center border border-sun/40 text-sun">⌂</span>
+            <span>Boerne, TX 78006 · Texas Hill Country</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full grid place-items-center border border-sun/40 text-sun">⌚</span>
+            <span>Open daily · 9:00 AM – 5:00 PM</span>
+          </div>
+        </div>
+
+        <a href="tel:+12109010236" class="btn-primary magnetic mt-10 inline-flex" data-magnet>📞 Tap to call dispatch</a>
+      </div>
+
+      <div class="md:col-span-7">
+        <div class="map-wrap">
+          <iframe
+            title="Hill Country Plumbing Co. service area map — Boerne, TX"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-98.84%2C29.74%2C-98.62%2C29.86&amp;layer=mapnik&amp;marker=29.7947%2C-98.7320"
+            width="100%" height="460"
+            style="border:0;display:block;"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="text-xs font-mono mt-3 text-cream/55 ink-invert">29.7947° N, 98.7320° W · Boerne · TX · 78006</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PREMIER UPSELL =================== -->
+<section id="premier" class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute inset-0 -z-10"
+       style="background:radial-gradient(60% 80% at 80% 20%, rgba(255,200,87,.18), transparent 60%), linear-gradient(180deg, var(--navy-2), var(--navy));"></div>
+
+  <div class="max-w-5xl mx-auto px-5 md:px-8 text-center">
+    <div class="eyebrow mb-5">// You're seeing 10%</div>
+    <h2 class="font-serif text-[clamp(36px,6vw,84px)] leading-[1.02]">
+      Unlock the <span class="italic text-sun">Premier Suite.</span><br/>
+      Dominate Boerne, San Antonio, and the entire Hill Country.
+    </h2>
+    <p class="mt-8 text-cream/75 ink-invert max-w-3xl mx-auto text-lg leading-relaxed">
+      Voice search, generative AI answers, near-me domination, the full schema stack, Yext Top-7 directory sync, Apple &amp; Google Maps push, silo SEO architecture, and a 5-page editorial site engineered to rank. This page is the hook — the Premier build is the catch.
+    </p>
+
+    <div class="mt-10 grid sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-3xl mx-auto text-sm text-left">
+      <div class="card p-4">✦ Voice / AEO answer blocks</div>
+      <div class="card p-4">✦ Generative AI overview prep</div>
+      <div class="card p-4">✦ Full FAQ + Service schema</div>
+      <div class="card p-4">✦ Near-me landing pages</div>
+      <div class="card p-4">✦ Yext Top-7 directory sync</div>
+      <div class="card p-4">✦ Apple / Google Maps push</div>
+      <div class="card p-4">✦ Silo SEO architecture</div>
+      <div class="card p-4">✦ Lighthouse 99+ tuning</div>
+      <div class="card p-4">✦ Lead-form + CRM hook</div>
+    </div>
+
+    <a href="tel:+12109010236" class="btn-primary magnetic mt-12 inline-flex" data-magnet>✦ Talk to a Premier strategist</a>
+    <p class="mt-4 text-xs font-mono uppercase tracking-[.32em] text-cream/45 ink-invert">No form. Just a call.</p>
+  </div>
+</section>
+
+<!-- =================== PASS 3 — SIGNATURE WIDGET 2: JOB DIAGNOSTIC =================== -->
+<section id="diagnostic" class="p3-section" data-block="signature-widget-2" aria-label="Job Diagnostic — plumbing symptom checker">
+  <!-- Putting Green contour board (decorative) -->
+  <div class="p3-contour" aria-hidden="true">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,60 C200,20 360,100 540,60 S900,20 1200,60"/>
+      <path d="M0,40 C220,80 380,10 560,50 S960,90 1200,40" opacity=".7"/>
+      <path d="M0,80 C220,50 380,110 560,70 S960,30 1200,80" opacity=".5"/>
+      <path d="M0,100 C220,70 380,120 560,90 S960,60 1200,100" opacity=".35"/>
+      <path d="M0,20 C220,40 380,0 560,30 S960,50 1200,20" opacity=".3"/>
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8" style="margin-top:64px;">
+    <div class="p3-eyebrow">// Job Diagnostic</div>
+    <h2 class="p3-h"><span class="p3-holo">Tell us what's wrong.</span><br/><span class="p3-it">We'll tell you what it likely is.</span></h2>
+    <p class="p3-lede">Tap any symptoms you're seeing. The recommendation, urgency, and rough fee band update as you go — a starting point for an honest phone call, not a final invoice.</p>
+
+    <div class="p3-diag" style="margin-top:34px;">
+      <div class="p3-diag__layout">
+        <div>
+          <div class="p3-out__label">Symptoms</div>
+          <div class="p3-chips" id="p3Chips" role="group" aria-label="Plumbing symptoms">
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="drain">Slow drain</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="pressure">Low water pressure</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="toilet">Running toilet</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="heater">Water heater 10+ years</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="slab">Warm spot on floor / slab leak</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="odor">Sewer odor</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="outdoor">Outdoor / yard leak</button>
+            <button type="button" class="p3-chip" aria-pressed="false" data-sym="nohot">No hot water</button>
+          </div>
+          <p style="margin-top:18px; font-family:'Fraunces',serif; font-style:italic; font-size:14px; color:rgba(244,238,220,.55);" class="p3-lede">Numbers are common ballpark ranges for Hill Country homes. Final price is set after we see the work.</p>
+        </div>
+
+        <div class="p3-out" aria-live="polite" id="p3Out">
+          <div class="p3-out__label">Recommendation</div>
+          <div class="p3-out__title" id="p3Title">Pick a symptom to begin.</div>
+          <div class="p3-out__cat" id="p3Cat">We'll narrow it down with you.</div>
+          <div class="p3-band" id="p3Band" hidden>
+            <span class="p3-band__lo" id="p3Lo">$0</span>
+            <span class="p3-band__sep">—</span>
+            <span class="p3-band__hi" id="p3Hi">$0</span>
+            <span class="p3-band__label">Rough fee band</span>
+          </div>
+          <div id="p3Urg"></div>
+          <p class="p3-out__notes" id="p3Notes"></p>
+          <a href="tel:+12109010236" class="p3-out__cta" data-cta="phone" aria-label="Call Hill Country Plumbing now">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Call (210) 901-0236</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PASS 3 — FAQ (matches FAQPage schema) =================== -->
+<section id="faq" class="p3-section" data-block="faq" aria-label="Frequently asked questions">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="p3-eyebrow">// Honest answers</div>
+    <h2 class="p3-h">The questions we get<br/><span class="p3-it p3-holo">every week.</span></h2>
+    <p class="p3-lede">Plumbing is mostly trust. These are the straight answers we give on the phone before a truck ever rolls.</p>
+
+    <div class="p3-faq__list">
+      <details class="p3-faq__item" id="faq-slab">
+        <summary class="p3-faq__q">How do I know if I have a slab leak in my Boerne home?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">If you've got a warm spot on the floor, a meter dial that keeps moving overnight, and a recent water-bill spike, it is most likely a slab leak.</span>
+          <span class="p3-faq__rest">Other tells include the sound of running water with every fixture closed and unexplained damp baseboards. We confirm with acoustic and pressure tests before any concrete is touched.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item">
+        <summary class="p3-faq__q">What's the average lifespan of a water heater in Hill Country water?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">Plan on 8 to 12 years for a tank unit, and 12 to 20 years for a tankless unit that is flushed annually.</span>
+          <span class="p3-faq__rest">Our limestone water is hard, which shortens tank life. A whole-home softener typically extends both, sometimes well past those ranges.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item" id="faq-emergency">
+        <summary class="p3-faq__q">Do you handle emergency plumbing calls outside 9 AM in Boerne?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">Yes — for active leaks or no-water situations we triage by phone and dispatch as soon as a tech can roll, even before our 9 AM standard open.</span>
+          <span class="p3-faq__rest">Call first so we can advise on the safest shut-off in the meantime. We work seven days a week from a Boerne base.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item">
+        <summary class="p3-faq__q">What towns and ZIP codes do you serve around Boerne?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">We serve Boerne 78006 and 78015, plus Fair Oaks Ranch, Bulverde, Comfort, Pipe Creek, and the north and west reach of San Antonio.</span>
+          <span class="p3-faq__rest">If you're on the edge of Kendall County, call and we'll tell you straight whether it's a fit before we roll a truck.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item">
+        <summary class="p3-faq__q">Why is my water pressure low in an older Boerne home?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">Low pressure in an older Boerne home is usually a failing pressure-reducing valve, mineral-scaled galvanized supply lines, or a partially closed shut-off from a prior repair.</span>
+          <span class="p3-faq__rest">We diagnose with a gauge at the hose bib before recommending anything bigger than a regulator swap.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item">
+        <summary class="p3-faq__q">Are you licensed and insured plumbers in Texas?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">Yes — Hill Country Plumbing is veteran-owned, fully licensed in Texas, and carries general liability and workers-comp coverage.</span>
+          <span class="p3-faq__rest">License and insurance details are provided on request before any work begins.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item">
+        <summary class="p3-faq__q">Do you offer fixed-fee pricing for plumbing work?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">Yes — for most diagnosable jobs, we quote a flat price in person before tools come out.</span>
+          <span class="p3-faq__rest">Hourly time-and-materials is reserved for open-ended jobs where the scope can't be known until we open a wall or pull a fixture.</span>
+        </div>
+      </details>
+      <details class="p3-faq__item">
+        <summary class="p3-faq__q">Tankless or tank water heater — which is right for the Hill Country?</summary>
+        <div class="p3-faq__a">
+          <span class="p3-faq__lead">Tankless wins on lifespan and footprint, tank wins on up-front cost and tolerance of hard water without a softener.</span>
+          <span class="p3-faq__rest">Tankless must be flushed yearly to last in our water. We size both to your actual peak-minute demand, not just bedroom count.</span>
+        </div>
+      </details>
+    </div>
+
+    <!-- Areas Served (SERP page-one block) -->
+    <div class="p3-areas" data-block="areas-served" aria-labelledby="areasHeading">
+      <div class="p3-eyebrow">// Where we work</div>
+      <h3 id="areasHeading" style="font-family:'Fraunces',Georgia,serif; font-size:clamp(22px,2.4vw,32px); font-weight:500; line-height:1.15; margin:6px 0 4px; letter-spacing:-.012em;">
+        Plumbing service across <span class="p3-it" style="font-style:italic; color:var(--hc-copper-glow);">Boerne &amp; Kendall County</span>.
+      </h3>
+      <p class="p3-lede" style="max-width:64ch;">From a Boerne 78006 ranch road to the north reach of San Antonio, here is the corridor we cover under one crew.</p>
+      <ul class="p3-areas__grid" role="list">
+        <li class="p3-areas__item"><span class="p3-areas__dot" aria-hidden="true"></span><span class="p3-areas__name">Boerne</span><span class="p3-areas__zip">78006 / 78015</span></li>
+        <li class="p3-areas__item"><span class="p3-areas__dot" aria-hidden="true"></span><span class="p3-areas__name">Fair Oaks Ranch</span><span class="p3-areas__zip">78015</span></li>
+        <li class="p3-areas__item"><span class="p3-areas__dot" aria-hidden="true"></span><span class="p3-areas__name">Bulverde</span><span class="p3-areas__zip">78163</span></li>
+        <li class="p3-areas__item"><span class="p3-areas__dot" aria-hidden="true"></span><span class="p3-areas__name">Comfort</span><span class="p3-areas__zip">78013</span></li>
+        <li class="p3-areas__item"><span class="p3-areas__dot" aria-hidden="true"></span><span class="p3-areas__name">Pipe Creek</span><span class="p3-areas__zip">78063</span></li>
+        <li class="p3-areas__item"><span class="p3-areas__dot" aria-hidden="true"></span><span class="p3-areas__name">Kendall County</span><span class="p3-areas__zip">All</span></li>
+      </ul>
+      <address class="p3-areas__addr">
+        Dispatched from Boerne, TX 78006 — plus the north and west reach of greater San Antonio. Edge of the map? Call and we'll tell you straight whether it's a fit.
+      </address>
+    </div>
+
+    <!-- AI Overviews bait (single-sentence answer-first <dl>) -->
+    <div class="p3-aeo" data-block="ai-overview-bait" aria-labelledby="aeoHeading">
+      <div class="p3-eyebrow">// Quick answers</div>
+      <h3 id="aeoHeading" style="font-family:'Fraunces',Georgia,serif; font-size:clamp(22px,2.4vw,32px); font-weight:500; line-height:1.15; margin:6px 0 4px; letter-spacing:-.012em;">
+        Voice-search ready, <span class="p3-it" style="font-style:italic; color:var(--hc-copper-glow);">honest as a handshake.</span>
+      </h3>
+      <p class="p3-lede" style="max-width:64ch;">The questions we get asked through the front door, answered in one sentence.</p>
+      <dl>
+        <div>
+          <dt>Do you serve Boerne, TX 78006?</dt>
+          <dd>Yes — we serve Boerne 78006 and the surrounding Kendall County including Fair Oaks Ranch, Bulverde, Comfort, and Pipe Creek.</dd>
+        </div>
+        <div>
+          <dt>Is there a plumber near me open today in the Hill Country?</dt>
+          <dd>Yes — we are open seven days a week from 9 AM out of Boerne, with same-day triage by phone for active leaks.</dd>
+        </div>
+        <div>
+          <dt>How much does a slab leak repair cost in Boerne?</dt>
+          <dd>A typical Boerne slab leak repair runs roughly $800 to $3,500, depending on whether we spot-repair the line or reroute it overhead — we quote the flat price in person after pinpoint testing.</dd>
+        </div>
+        <div>
+          <dt>Who is the best plumber for an emergency leak in 78006?</dt>
+          <dd>For an emergency leak in 78006, call a licensed, insured, Boerne-based plumber first — we triage by phone, advise on the shut-off, and dispatch a tech the same day.</dd>
+        </div>
+        <div>
+          <dt>Are you a veteran-owned plumber in Texas Hill Country?</dt>
+          <dd>Yes — Hill Country Plumbing is veteran-owned, fully licensed in Texas, and insured for general liability and workers comp.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PASS 3 — CONVERSION STACK =================== -->
+<aside class="p3-sticky" id="p3Sticky" data-block="conversion-stack" aria-label="Quick call rail" role="complementary">
+  <span class="p3-sticky__msg">Open 9 AM, seven days. <em>Call now.</em></span>
+  <a href="tel:+12109010236" class="p3-sticky__phone" data-cta="phone">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/></svg>
+    (210) 901-0236
+  </a>
+  <button type="button" class="p3-sticky__close" id="p3StickyClose" aria-label="Dismiss call rail">×</button>
+</aside>
+
+<div class="p3-modal" id="p3Modal" role="dialog" aria-modal="true" aria-labelledby="p3ModalTitle" aria-hidden="true">
+  <div class="p3-modal__card">
+    <div class="p3-modal__eyebrow">// One last thing</div>
+    <h3 class="p3-modal__title" id="p3ModalTitle">Before you go — <em>a quick answer is a phone call away.</em></h3>
+    <p class="p3-modal__body">If you've got a leak, a drip, or a water heater that's been making noises, we'd rather hear about it now than after the drywall comes down. Veteran-owned, Boerne-based, open at 9 AM seven days a week.</p>
+    <div class="p3-modal__actions">
+      <a href="tel:+12109010236" class="p3-modal__cta" data-cta="phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/></svg>
+        Call (210) 901-0236
+      </a>
+      <button type="button" class="p3-modal__dismiss" id="p3ModalDismiss">No thanks, I'll keep looking</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== FOOTER =================== -->
+</main>
+
+<footer class="relative pt-16 pb-32 border-t border-cream/10 border-soft overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-12 gap-8 text-sm">
+    <div class="md:col-span-5">
+      <div class="font-display text-2xl">HILL COUNTRY PLUMBING CO.</div>
+      <p class="mt-3 text-cream/60 ink-invert max-w-sm">Veteran-owned plumbing &amp; drain service. Boerne, TX · Texas Hill Country · North San Antonio.</p>
+    </div>
+    <div class="md:col-span-3">
+      <div class="eyebrow mb-3">Services</div>
+      <ul class="space-y-1 text-cream/75 ink-invert">
+        <li>Leak detection</li><li>Drain cleaning</li><li>Water heaters</li>
+        <li>Slab leak repair</li><li>Tankless install</li><li>Water softeners · repipe</li>
+      </ul>
+    </div>
+    <div class="md:col-span-4">
+      <div class="eyebrow mb-3">Contact</div>
+      <div class="text-cream/75 ink-invert">
+        <a class="block hover:text-sun" href="tel:+12109010236">(210) 901-0236</a>
+        <div>Boerne, TX 78006</div>
+        <div>Open daily · 9am–5pm</div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-5 md:px-8 mt-12 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-cream/40 ink-invert">
+    <div>© <span id="yr"></span> Hill Country Plumbing Co. · All rights reserved.</div>
+    <div>// fingerprint: hill-country-78006-tier1-archetype-radial-burst</div>
+  </div>
+</footer>
+
+<script type="module">
+  // ====== Nav scrolled toggle ======
+  const nav = document.getElementById('nav');
+  const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // ====== Year ======
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ====== Cursor spotlight ======
+  const spot = document.getElementById('spot');
+  window.addEventListener('pointermove', e => {
+    spot.style.setProperty('--mx', e.clientX + 'px');
+    spot.style.setProperty('--my', e.clientY + 'px');
+  });
+
+  // ====== Particles ======
+  const wrap = document.getElementById('particles');
+  if (wrap){
+    const n = 26;
+    for (let i=0;i<n;i++){
+      const d = document.createElement('div');
+      d.className = 'p-dot';
+      d.style.left = (Math.random()*100)+'%';
+      d.style.top = (60 + Math.random()*40)+'%';
+      d.style.animationDuration = (8 + Math.random()*9)+'s';
+      d.style.animationDelay = (-Math.random()*9)+'s';
+      d.style.opacity = 0.4 + Math.random()*0.6;
+      wrap.appendChild(d);
+    }
+  }
+
+  // ====== Dark/light auto via sunrise/sunset (local) ======
+  // Boerne lat/lng 29.7947,-98.7320
+  function isDaytimeAt(lat, lng){
+    // Approximate sunrise/sunset using NOAA solar position simple approximation
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const dayOfYear = Math.floor((now - start) / 86400000);
+    const tzOffset = -now.getTimezoneOffset()/60; // hours from UTC
+    const fracYear = 2*Math.PI/365 * (dayOfYear - 1 + (now.getHours()-12)/24);
+    const eqTime = 229.18*(0.000075 + 0.001868*Math.cos(fracYear) - 0.032077*Math.sin(fracYear) -
+                   0.014615*Math.cos(2*fracYear) - 0.040849*Math.sin(2*fracYear));
+    const decl = 0.006918 - 0.399912*Math.cos(fracYear) + 0.070257*Math.sin(fracYear) -
+                 0.006758*Math.cos(2*fracYear) + 0.000907*Math.sin(2*fracYear) -
+                 0.002697*Math.cos(3*fracYear) + 0.00148*Math.sin(3*fracYear);
+    const latRad = lat * Math.PI/180;
+    const cosHa = (Math.cos(90.833*Math.PI/180) / (Math.cos(latRad)*Math.cos(decl)) - Math.tan(latRad)*Math.tan(decl));
+    if (cosHa > 1 || cosHa < -1) return true; // polar day/night fallback
+    const ha = Math.acos(cosHa) * 180/Math.PI;
+    const sunriseMin = 720 - 4*(lng + ha) - eqTime;
+    const sunsetMin  = 720 - 4*(lng - ha) - eqTime;
+    const localMin = now.getHours()*60 + now.getMinutes() - tzOffset*60;
+    return localMin > sunriseMin && localMin < sunsetMin;
+  }
+  function applyAutoTheme(){
+    const day = isDaytimeAt(29.7947, -98.7320);
+    document.documentElement.classList.toggle('light', day);
+  }
+  applyAutoTheme();
+  setInterval(applyAutoTheme, 5*60*1000);
+
+  // ====== GSAP animations ======
+  if (window.gsap){
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Kinetic name: letter stagger up
+    gsap.to('#kinetic-name .char', {
+      y: 0, duration: 1.0, ease: 'power4.out',
+      stagger: { each: 0.035, from: 'start' },
+      delay: 0.15
+    });
+
+    // Reveal lines
+    document.querySelectorAll('.reveal-line > *').forEach(el=>{
+      gsap.to(el, {
+        y:0, duration:.9, ease:'power3.out',
+        scrollTrigger:{ trigger: el, start:'top 88%' }
+      });
+    });
+
+    // Pitch heading per-line reveal
+    const pitchLines = document.querySelectorAll('#pitchHeading span');
+    pitchLines.forEach((el,i)=>{
+      gsap.from(el, {
+        y: 80, opacity: 0, duration: 1, ease: 'power3.out',
+        delay: i*0.06,
+        scrollTrigger:{ trigger:'#pitchHeading', start:'top 75%' }
+      });
+    });
+
+    // Parallax: hero landmark photo
+    gsap.to('section#top img', {
+      yPercent: 18, ease:'none',
+      scrollTrigger:{ trigger:'#top', start:'top top', end:'bottom top', scrub:true }
+    });
+    gsap.to('section#top .orb', {
+      yPercent: -30, ease:'none',
+      scrollTrigger:{ trigger:'#top', start:'top top', end:'bottom top', scrub:true }
+    });
+    gsap.to('section#top .orb-core', {
+      yPercent: -10, scale:1.05, ease:'none',
+      scrollTrigger:{ trigger:'#top', start:'top top', end:'bottom top', scrub:true }
+    });
+
+    // Service cards entrance
+    gsap.from('#serviceGrid > *', {
+      y: 60, opacity: 0, duration:.9, ease:'power3.out',
+      stagger: .07,
+      scrollTrigger:{ trigger:'#serviceGrid', start:'top 80%' }
+    });
+
+    // Counters
+    document.querySelectorAll('.counter').forEach(el=>{
+      const target = +el.dataset.count;
+      const obj = { n: 0 };
+      gsap.to(obj, {
+        n: target, duration: 1.6, ease:'power2.out',
+        scrollTrigger:{ trigger: el, start:'top 85%' },
+        onUpdate(){ el.textContent = Math.round(obj.n).toLocaleString(); }
+      });
+    });
+
+    // Gallery tiles parallax fade
+    gsap.from('#gallery .geo-tile', {
+      y: 60, opacity: 0, duration:.9, ease:'power3.out',
+      stagger:.05,
+      scrollTrigger:{ trigger:'#gallery', start:'top 80%' }
+    });
+
+    // Premier card entrance
+    gsap.from('#premier .card', {
+      y: 40, opacity: 0, duration: .8, ease:'power3.out',
+      stagger:.05,
+      scrollTrigger:{ trigger:'#premier', start:'top 80%' }
+    });
+
+    // Section clip-path wipe in
+    ['#pitch','#services','#proof','#gallery','#about','#contact','#premier'].forEach(id=>{
+      const el = document.querySelector(id);
+      if (!el) return;
+      gsap.fromTo(el, { clipPath:'inset(8% 0 8% 0 round 28px)' },
+        { clipPath:'inset(0% 0 0% 0 round 0px)', ease:'power2.out', duration: 1,
+          scrollTrigger:{ trigger: el, start:'top 85%', end:'top 50%', scrub: true } });
+    });
+  }
+
+  // ====== Magnetic CTAs ======
+  document.querySelectorAll('[data-magnet]').forEach(el=>{
+    const strength = 22;
+    el.addEventListener('pointermove', e=>{
+      const r = el.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2;
+      const y = e.clientY - r.top - r.height/2;
+      el.style.transform = `translate(${x/r.width*strength}px, ${y/r.height*strength}px)`;
+    });
+    el.addEventListener('pointerleave', ()=> el.style.transform = '');
+  });
+
+  // ====== Tilt cards ======
+  document.querySelectorAll('[data-tilt]').forEach(card=>{
+    card.addEventListener('pointermove', e=>{
+      const r = card.getBoundingClientRect();
+      const rx = ((e.clientY - r.top) / r.height - .5) * -8;
+      const ry = ((e.clientX - r.left) / r.width - .5) * 10;
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    card.addEventListener('pointerleave', ()=> card.style.transform = '');
+  });
+</script>
+
+<!-- ====== FLAGSHIP 3.0 HERO JS — video, motion, widget ====== -->
+<script>
+(function(){
+  const hero = document.getElementById('top');
+  if (!hero) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover:none)').matches;
+
+  // ----- Video / fallback handling -----
+  const video = document.getElementById('f3Video');
+  const poster = document.getElementById('f3Poster');
+  if (reduced){
+    if (video) video.remove();
+    if (poster) poster.style.display = 'block';
+  } else if (video){
+    video.addEventListener('error', ()=>{
+      video.style.display = 'none';
+      if (poster) poster.style.display = 'block';
+    });
+    const source = video.querySelector('source');
+    if (source){
+      source.addEventListener('error', ()=>{
+        video.style.display = 'none';
+        if (poster) poster.style.display = 'block';
+      });
+    }
+    // ensure autoplay even on iOS
+    const tryPlay = ()=> { const p = video.play(); if (p && p.catch) p.catch(()=>{}); };
+    if (video.readyState >= 2) tryPlay(); else video.addEventListener('loadeddata', tryPlay, { once:true });
+  }
+
+  // ----- Headline word reveal (60ms stagger) -----
+  const headline = document.getElementById('f3Headline');
+  if (headline){
+    const words = headline.querySelectorAll('.f3-word > span');
+    words.forEach((w, i)=>{ w.style.transitionDelay = (i * 60) + 'ms'; });
+    requestAnimationFrame(()=> requestAnimationFrame(()=> headline.classList.add('is-revealed')));
+  }
+
+  // ----- Cursor radial light (desktop) -----
+  const cursorLight = document.getElementById('f3CursorLight');
+  if (cursorLight && !isTouch && !reduced){
+    hero.addEventListener('pointermove', (e)=>{
+      const r = hero.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      cursorLight.style.setProperty('--f3mx', x + '%');
+      cursorLight.style.setProperty('--f3my', y + '%');
+    });
+    hero.addEventListener('pointerleave', ()=>{
+      cursorLight.style.opacity = '0';
+    });
+    hero.addEventListener('pointerenter', ()=>{
+      cursorLight.style.opacity = '1';
+    });
+  } else if (cursorLight){
+    cursorLight.style.display = 'none';
+  }
+
+  // ----- Scroll parallax: video 0.3x, topo -0.6x -----
+  const topo = document.getElementById('f3Topo');
+  if (!reduced){
+    let ticking = false;
+    const onScroll = ()=>{
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(()=>{
+        const y = window.scrollY || window.pageYOffset;
+        const heroH = hero.offsetHeight;
+        if (y < heroH * 1.2){
+          if (video)  video.style.transform  = `translate3d(0, ${y * 0.30}px, 0) scale(1.05)`;
+          if (poster) poster.style.transform = `translate3d(0, ${y * 0.30}px, 0)`;
+          if (topo)   topo.style.transform   = `translate3d(0, ${y * -0.60}px, 0)`;
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive:true });
+  }
+
+  // ----- CountUp on intersection -----
+  const counters = hero.querySelectorAll('[data-f3count]');
+  const formatN = (n, fmt)=>{
+    if (fmt === 'am')   return Math.round(n) + ' AM';
+    if (fmt === 'plain'){
+      if (n >= 10000) return String(Math.round(n));
+      return String(Math.round(n));
+    }
+    return String(Math.round(n));
+  };
+  const runCount = (el)=>{
+    const target = parseFloat(el.dataset.f3count);
+    const fmt = el.dataset.f3format || 'plain';
+    if (reduced){ el.textContent = formatN(target, fmt); return; }
+    const start = performance.now();
+    const dur = 1600;
+    const step = (t)=>{
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatN(target * eased, fmt);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if (en.isIntersecting){ runCount(en.target); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(c=> io.observe(c));
+  } else {
+    counters.forEach(runCount);
+  }
+
+  // ----- Fixed-Fee Quote Configurator (real live recalc) -----
+  const widget = document.getElementById('f3Widget');
+  if (widget){
+    const state = {
+      svc:   { base: 285, label: 'Leak repair', key: 'leak' },
+      year:  1995,
+      urg:   { mult: 1.0, label: 'Within a week', key: 'flex' }
+    };
+    const $band  = document.getElementById('f3Band');
+    const $diag  = document.getElementById('f3Diag');
+    const $route = document.getElementById('f3Route');
+    const $svcLbl = document.getElementById('f3SvcLabel');
+    const $urgLbl = document.getElementById('f3UrgLabel');
+    const $yearVal = document.getElementById('f3YearVal');
+    const $year = document.getElementById('f3Year');
+    const $cta = document.getElementById('f3WidgetCta');
+
+    const fmt = (n)=> '$' + Math.round(n).toLocaleString('en-US');
+
+    function ageMultiplier(year){
+      // older homes = more complexity
+      const age = 2025 - year;
+      if (age <= 5)  return 1.00;
+      if (age <= 15) return 1.04;
+      if (age <= 30) return 1.10;
+      if (age <= 50) return 1.18;
+      if (age <= 75) return 1.28;
+      return 1.40;
+    }
+
+    function recalc(){
+      const ageMult = ageMultiplier(state.year);
+      const base    = state.svc.base * ageMult * state.urg.mult;
+      // Repipe gets a wider band naturally
+      const spread  = state.svc.key === 'repipe' ? 0.35 : 0.24;
+      const lo = base;
+      const hi = base * (1 + spread);
+      $band.innerHTML = fmt(lo) + '&ndash;' + fmt(hi);
+      $diag.textContent = (state.urg.key === 'today') ? 'Waived with same-day repair' : '$0 with repair';
+      // Routing message reflects urgency
+      if (state.urg.key === 'today') $route.textContent = 'Truck rolling · 9 AM';
+      else if (state.urg.key === '24h') $route.textContent = 'Boerne · next 24 hrs';
+      else $route.textContent = 'Boerne · 78006';
+      // CTA href stays #contact — sub-data attribute for analytics if desired
+      if ($cta) $cta.dataset.quote = state.svc.label + ' · ' + state.urg.label + ' · ' + state.year;
+    }
+
+    // service buttons
+    widget.querySelectorAll('[data-svc]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        widget.querySelectorAll('[data-svc]').forEach(b=> b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
+        state.svc = {
+          base: parseFloat(btn.dataset.base),
+          label: btn.dataset.label,
+          key: btn.dataset.svc
+        };
+        $svcLbl.textContent = state.svc.label;
+        recalc();
+      });
+    });
+    // urgency buttons
+    widget.querySelectorAll('[data-urg]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        widget.querySelectorAll('[data-urg]').forEach(b=> b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
+        state.urg = {
+          mult: parseFloat(btn.dataset.mult),
+          label: btn.dataset.label,
+          key: btn.dataset.urg
+        };
+        $urgLbl.textContent = state.urg.label;
+        recalc();
+      });
+    });
+    // year slider
+    if ($year){
+      $year.addEventListener('input', ()=>{
+        state.year = parseInt($year.value, 10);
+        $yearVal.textContent = state.year;
+        recalc();
+      });
+    }
+    // smooth scroll on CTA
+    if ($cta){
+      $cta.addEventListener('click', (e)=>{
+        const target = document.getElementById('contact');
+        if (target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      });
+    }
+    recalc();
+  }
+})();
+</script>
+
+
+  <!-- ====== PASS 3 — JS: Job Diagnostic + Conversion Stack ====== -->
+  <script>
+  (function(){
+    'use strict';
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---------- Scroll progress bar ----------
+    var pBar = document.getElementById('p3Progress');
+    if (pBar){
+      var ticking = false;
+      function onScroll(){
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function(){
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          var pct = h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0;
+          pBar.style.width = pct.toFixed(2) + '%';
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // ---------- Sticky CTA rail ----------
+    var sticky = document.getElementById('p3Sticky');
+    var stickyClose = document.getElementById('p3StickyClose');
+    var dismissedKey = 'hc_p3_sticky_dismissed';
+    if (sticky){
+      var dismissed = false;
+      try { dismissed = sessionStorage.getItem(dismissedKey) === '1'; } catch(e){}
+      function checkSticky(){
+        if (dismissed) return;
+        if (window.scrollY > 600) sticky.classList.add('is-visible');
+        else sticky.classList.remove('is-visible');
+      }
+      window.addEventListener('scroll', checkSticky, { passive: true });
+      checkSticky();
+      if (stickyClose){
+        stickyClose.addEventListener('click', function(){
+          dismissed = true;
+          sticky.classList.remove('is-visible');
+          try { sessionStorage.setItem(dismissedKey, '1'); } catch(e){}
+        });
+      }
+    }
+
+    // ---------- Exit-intent / scroll-depth modal ----------
+    var modal = document.getElementById('p3Modal');
+    var modalDismiss = document.getElementById('p3ModalDismiss');
+    var modalKey = 'hc_p3_modal_shown';
+    var shown = false;
+    try { shown = sessionStorage.getItem(modalKey) === '1'; } catch(e){}
+    function openModal(){
+      if (shown || !modal) return;
+      shown = true;
+      try { sessionStorage.setItem(modalKey, '1'); } catch(e){}
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden','false');
+      var cta = modal.querySelector('.p3-modal__cta');
+      if (cta && !reduced) setTimeout(function(){ cta.focus(); }, 50);
+    }
+    function closeModal(){
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+    }
+    if (modalDismiss) modalDismiss.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+    var isDesktop = window.matchMedia('(min-width: 901px)').matches;
+    if (isDesktop){
+      // Exit-intent on desktop
+      var armed = false;
+      setTimeout(function(){ armed = true; }, 8000); // arm after 8s so it doesn't fire instantly
+      document.addEventListener('mouseout', function(e){
+        if (!armed || shown) return;
+        if (!e.relatedTarget && e.clientY <= 5) openModal();
+      });
+    } else {
+      // Scroll-depth on mobile (80%)
+      var fired = false;
+      window.addEventListener('scroll', function(){
+        if (fired || shown) return;
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        if (h > 0 && (window.scrollY / h) > 0.8){ fired = true; openModal(); }
+      }, { passive: true });
+    }
+
+    // ---------- Job Diagnostic widget ----------
+    var chipsEl = document.getElementById('p3Chips');
+    if (!chipsEl) return;
+    var titleEl = document.getElementById('p3Title');
+    var catEl = document.getElementById('p3Cat');
+    var bandEl = document.getElementById('p3Band');
+    var loEl = document.getElementById('p3Lo');
+    var hiEl = document.getElementById('p3Hi');
+    var urgEl = document.getElementById('p3Urg');
+    var notesEl = document.getElementById('p3Notes');
+
+    // Symptom → (service, category, urgency, lo, hi, notes)
+    var DB = {
+      drain:    { svc:'Drain Cleaning',                cat:'Hydro-jet + camera inspection', urg:'soon',  lo:150,  hi:450,
+                  note:'A slow drain is usually grease, scale, or a partial root intrusion. Camera tells us which.' },
+      pressure: { svc:'Pressure Regulator Replacement', cat:'PRV diagnosis at the main',     urg:'soon',  lo:200,  hi:500,
+                  note:'We start with a gauge at the hose bib before recommending anything bigger than a regulator.' },
+      toilet:   { svc:'Toilet Repair',                  cat:'Flapper / fill-valve / wax ring', urg:'watch', lo:120,  hi:320,
+                  note:'A running toilet is the cheapest leak you have — and the easiest to fix on the first visit.' },
+      heater:   { svc:'Water Heater Replacement',       cat:'Tank or tankless, sized to demand', urg:'soon', lo:1200, hi:2400,
+                  note:'In our limestone water, ten years is when we start checking anode rods and listening for scale.' },
+      slab:     { svc:'Slab Leak Repair',               cat:'Acoustic + pressure pinpoint',   urg:'asap',  lo:800,  hi:3500,
+                  note:'Shut the main off if you can hear water with all fixtures closed. Call before you cut concrete.' },
+      odor:     { svc:'Sewer Line Diagnostic',          cat:'Camera + smoke test',            urg:'soon',  lo:280,  hi:850,
+                  note:"Sewer odor inside is usually a dry trap or a vent issue — sometimes a cracked line. We'll find which." },
+      outdoor:  { svc:'Yard Line Leak Repair',          cat:'Locate + excavation',            urg:'asap',  lo:450,  hi:2200,
+                  note:'A wet yard with no rain or a spike in your water bill is the usual tell. Faster we look, less we dig.' },
+      nohot:    { svc:'Water Heater Service',           cat:'Igniter / element / gas valve',   urg:'asap',  lo:180,  hi:680,
+                  note:'No hot water at all is often a single component, not a whole-unit replacement. Worth a same-day look.' }
+    };
+    var URG_RANK = { watch:1, soon:2, asap:3 };
+    var URG_TEXT = { watch:'Watch — not urgent', soon:'Soon — schedule this week', asap:'ASAP — same-day priority' };
+
+    var selected = new Set();
+    function fmt(n){ return '$' + Number(n).toLocaleString('en-US'); }
+
+    function recalc(){
+      if (selected.size === 0){
+        titleEl.textContent = "Pick a symptom to begin.";
+        catEl.textContent = "We'll narrow it down with you.";
+        bandEl.hidden = true;
+        urgEl.innerHTML = '';
+        notesEl.textContent = '';
+        return;
+      }
+      var lo = 0, hi = 0, urg = 'watch';
+      var primary = null, primaryWeight = -1;
+      var notes = [];
+      selected.forEach(function(sym){
+        var row = DB[sym]; if (!row) return;
+        lo += row.lo; hi += row.hi;
+        if (URG_RANK[row.urg] > URG_RANK[urg]) urg = row.urg;
+        if (URG_RANK[row.urg] > primaryWeight){ primary = row; primaryWeight = URG_RANK[row.urg]; }
+        notes.push(row.note);
+      });
+      // Multi-symptom discount on overlap (cap hi at 1.6x primary's hi when 3+ selected)
+      if (selected.size >= 3){ hi = Math.round(Math.min(hi, primary.hi * 1.8)); lo = Math.round(Math.min(lo, primary.lo * 1.5)); }
+
+      titleEl.textContent = primary.svc;
+      catEl.textContent = primary.cat + (selected.size > 1 ? ' (plus related work)' : '');
+      loEl.textContent = fmt(lo);
+      hiEl.textContent = fmt(hi);
+      bandEl.hidden = false;
+      urgEl.innerHTML = '<span class="p3-urg ' + urg + '"><span class="dot"></span>' + URG_TEXT[urg] + '</span>';
+      notesEl.textContent = notes[0];
+    }
+
+    chipsEl.addEventListener('click', function(e){
+      var btn = e.target.closest('.p3-chip'); if (!btn) return;
+      var sym = btn.getAttribute('data-sym');
+      var pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+      if (pressed) selected.delete(sym); else selected.add(sym);
+      recalc();
+    });
+    chipsEl.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        var btn = e.target.closest('.p3-chip'); if (!btn) return;
+        e.preventDefault(); btn.click();
+      }
+    });
+  })();
+  </script>
+
+  <!-- wss-dream-forge-edit-widget -->
+  <script src="https://wss-dream-forge.vercel.app/widget/edit-widget.js"
+    data-site-id="hill-country-plumbing"
+    data-factory="https://wss-dream-forge.vercel.app"
+    defer></script>
+</body>
+</html>

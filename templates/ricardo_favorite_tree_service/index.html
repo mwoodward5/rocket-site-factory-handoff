@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorite Tree Service, LLC — Tree Service in Barboursville, VA</title>
+  <meta name="description" content="Favorite Tree Service, LLC — tree trimming, pruning, removal, stump grinding, emergency tree service (24/7), and landscape maintenance in Barboursville, Charlottesville, and central Virginia. Call (540) 718-7032." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Favorite Tree Service, LLC — Tree Service in Barboursville, VA" />
+  <meta property="og:description" content="Local tree service for residential & commercial properties across central Virginia. Trimming, removal, stump grinding, 24/7 emergency. Call (540) 718-7032." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/hero.jpg" />
+
+  <!-- Favicon — stylized tree SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231B2D1C'/%3E%3Cpath d='M16 4 L10 14 H13 L8 22 H14 V28 H18 V22 H24 L19 14 H22 Z' fill='%233F6B3F'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Preload hero -->
+  <link rel="preload" as="image" href="images/hero.jpg" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========== STICKY NAV ========== -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo" aria-label="Favorite Tree Service, LLC — home">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="18" cy="18" r="18" fill="#3F6B3F"/>
+          <!-- trunk -->
+          <rect x="16" y="22" width="4" height="9" fill="#FAF7F0"/>
+          <!-- canopy tiers -->
+          <polygon points="18,4 11,16 25,16" fill="#FAF7F0"/>
+          <polygon points="18,10 10,21 26,21" fill="#3F6B3F" stroke="#FAF7F0" stroke-width="0.5"/>
+        </svg>
+        <span class="nav__brand">Favorite Tree Service</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav__links" role="list">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#service-area">Service Area</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="tel:5407187032" class="nav__cta-btn" aria-label="Call us at 540-718-7032">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.58 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.59 8.89a16 16 0 0 0 5.52 5.52l1.26-1.26a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 15.5v1.42Z"/></svg>
+              (540) 718-7032
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="nav__hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile nav drawer -->
+    <div class="nav__mobile" id="mobile-nav" hidden>
+      <ul role="list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#service-area">Service Area</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:5407187032" class="mobile-call-btn">(540) 718-7032</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" aria-label="Hero — Favorite Tree Service">
+      <div class="hero__bg" aria-hidden="true">
+        <img src="images/hero.jpg" alt="" class="hero__img" />
+        <div class="hero__overlay" aria-hidden="true"></div>
+      </div>
+      <div class="hero__content container">
+        <p class="hero__eyebrow">Barboursville, VA &mdash; Serving central Virginia</p>
+        <h1 class="hero__headline">The local tree service<br>that delivers.</h1>
+        <p class="hero__sub">Trimming, pruning, removal, stump grinding, emergency service &mdash; residential and commercial across central Virginia.</p>
+        <div class="hero__actions">
+          <a href="tel:5407187032" class="btn btn--primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.58 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.59 8.89a16 16 0 0 0 5.52 5.52l1.26-1.26a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 15.5v1.42Z"/></svg>
+            Call (540) 718-7032
+          </a>
+          <a href="tel:5407187032" class="btn btn--outline">Emergency 24/7</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TRUST STRIP ========== -->
+    <section class="trust-strip" aria-label="Trust indicators">
+      <div class="container">
+        <ul class="trust-strip__list" role="list">
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>BBB Accredited Business</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>24/7 Emergency Service</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Residential &amp; Commercial</span>
+          </li>
+          <li>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Locally Owned &amp; Operated</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="services" id="services" aria-labelledby="services-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title" id="services-heading">What We Do</h2>
+          <p class="section-sub">From routine maintenance to hazardous tree removal, we handle every aspect of tree care for homes and businesses across central Virginia.</p>
+        </header>
+        <ul class="services__grid" role="list">
+          <li class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M5 3s.55 10.11 7 9"/><path d="M19 3s-.55 10.11-7 9"/></svg>
+            </div>
+            <h3 class="service-card__title">Tree Service</h3>
+            <p class="service-card__desc">Expert trimming, pruning, and removal to keep your trees healthy, beautiful, and safe on your property.</p>
+          </li>
+          <li class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="4"/><line x1="2" y1="20" x2="22" y2="20"/><path d="M6 4 L18 4"/><path d="M3 12 L9 8 L12 12 L15 7 L21 12"/></svg>
+            </div>
+            <h3 class="service-card__title">Tree Felling</h3>
+            <p class="service-card__desc">Safe, controlled tree felling using professional techniques — protecting your property every step of the way.</p>
+          </li>
+          <li class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="3" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="21" y2="12"/></svg>
+            </div>
+            <h3 class="service-card__title">Stump Removal</h3>
+            <p class="service-card__desc">Complete stump grinding and removal — leaving your yard clean, safe, and ready for new landscaping.</p>
+          </li>
+          <li class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a9 9 0 0 1 9 9"/><path d="M3 3a15 15 0 0 1 15 15"/><circle cx="3" cy="21" r="1"/></svg>
+            </div>
+            <h3 class="service-card__title">Landscape Maintenance</h3>
+            <p class="service-card__desc">Regular maintenance to keep your landscape looking its best season after season, for residential and commercial properties.</p>
+          </li>
+          <li class="service-card service-card--accent">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3 class="service-card__title">Emergency Tree Service</h3>
+            <p class="service-card__desc">Available 24 hours a day, 7 days a week. When a storm brings a tree down, call us any time — we respond fast.</p>
+            <span class="service-card__badge">24/7</span>
+          </li>
+          <li class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3 class="service-card__title">Tree Care</h3>
+            <p class="service-card__desc">Comprehensive tree care for residential and commercial clients — our knowledgeable tree surgeons keep your trees thriving.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== SERVICE AREA ========== -->
+    <section class="service-area" id="service-area" aria-labelledby="area-heading">
+      <div class="container">
+        <div class="service-area__grid">
+          <div class="service-area__text">
+            <h2 class="section-title" id="area-heading">Our Service Area</h2>
+            <p>We serve homeowners and businesses throughout central Virginia — from our home base in Barboursville to Charlottesville and the surrounding counties.</p>
+            <ul class="area-list" role="list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Barboursville, VA
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Charlottesville, VA
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Greene County
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Albemarle County
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Orange County
+              </li>
+            </ul>
+            <p class="area-note">Not sure if we serve your area? Give us a call — we&rsquo;re happy to help.</p>
+            <a href="tel:5407187032" class="btn btn--primary btn--sm">Call (540) 718-7032</a>
+          </div>
+          <div class="service-area__visual" aria-hidden="true">
+            <div class="area-map-placeholder">
+              <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- Decorative Virginia region silhouette suggestion -->
+                <rect width="320" height="220" rx="12" fill="#1B2D1C" opacity="0.06"/>
+                <!-- Simplified roads/region lines -->
+                <ellipse cx="160" cy="110" rx="110" ry="70" fill="none" stroke="#3F6B3F" stroke-width="1.5" opacity="0.25" stroke-dasharray="6 4"/>
+                <ellipse cx="160" cy="110" rx="70" ry="44" fill="none" stroke="#6B4423" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 3"/>
+                <!-- Barboursville dot -->
+                <circle cx="160" cy="110" r="7" fill="#6B4423"/>
+                <circle cx="160" cy="110" r="14" fill="none" stroke="#6B4423" stroke-width="2" opacity="0.4"/>
+                <text x="172" y="114" font-family="Inter, sans-serif" font-size="11" fill="#1B2D1C" font-weight="600">Barboursville</text>
+                <!-- Charlottesville -->
+                <circle cx="118" cy="128" r="5" fill="#3F6B3F"/>
+                <text x="78" y="146" font-family="Inter, sans-serif" font-size="10" fill="#1B2D1C">Charlottesville</text>
+                <!-- County labels -->
+                <text x="55" y="85" font-family="Inter, sans-serif" font-size="9" fill="#1B2D1C" opacity="0.6">Albemarle Co.</text>
+                <text x="190" y="70" font-family="Inter, sans-serif" font-size="9" fill="#1B2D1C" opacity="0.6">Orange Co.</text>
+                <text x="170" y="95" font-family="Inter, sans-serif" font-size="9" fill="#1B2D1C" opacity="0.6">Greene Co.</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about__grid">
+          <div class="about__text">
+            <h2 class="section-title" id="about-heading">About Favorite Tree Service</h2>
+            <p class="about__lead">&ldquo;We treat the trees on your property the same as if they were in our backyard. Our knowledgeable tree surgeons can take care of your tree service needs.&rdquo;</p>
+            <p>Favorite Tree Service, LLC is a locally owned and operated tree service company based in Barboursville, Virginia. We work with homeowners and businesses across central Virginia, bringing the same level of care and expertise to every job — whether it&rsquo;s a routine trim or an emergency call in the middle of the night.</p>
+            <p>We&rsquo;re proud to be a BBB Accredited Business, and our team is ready to help whenever you need us — 7am&ndash;5pm Monday through Friday, with 24/7 emergency availability.</p>
+            <div class="about__badges">
+              <div class="badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                BBB Accredited Business
+              </div>
+              <div class="badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Locally Owned &amp; Operated
+              </div>
+            </div>
+          </div>
+          <div class="about__visual" aria-hidden="true">
+            <div class="about__image-wrap">
+              <img src="images/hero.jpg" alt="Looking up through the canopy of a mature Virginia oak tree at golden hour" class="about__img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <header class="section-header section-header--light">
+          <h2 class="section-title" id="contact-heading">Get in Touch</h2>
+          <p class="section-sub">Ready to schedule service or have a question? We&rsquo;re here to help — give us a call or send us an email.</p>
+        </header>
+        <div class="contact__grid">
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.58 1H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.59 8.89a16 16 0 0 0 5.52 5.52l1.26-1.26a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 15.5v1.42Z"/></svg>
+            </div>
+            <h3>Phone</h3>
+            <a href="tel:5407187032" class="contact-card__value">(540) 718-7032</a>
+            <p class="contact-card__note">24/7 for emergencies</p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <h3>Email</h3>
+            <a href="mailto:favoritetreeservice@aol.com" class="contact-card__value">favoritetreeservice<wbr>@aol.com</a>
+            <p class="contact-card__note">We&rsquo;ll get back to you promptly</p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Address</h3>
+            <address class="contact-card__value" style="font-style:normal;">
+              3514 Ridge Rd<br>
+              Barboursville, VA 22923
+            </address>
+            <a href="https://maps.google.com/?q=3514+Ridge+Rd+Barboursville+VA+22923" target="_blank" rel="noopener noreferrer" class="contact-card__note contact-card__map-link">Get directions &rarr;</a>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Hours</h3>
+            <p class="contact-card__value">Mon&ndash;Fri, 7am&ndash;5pm</p>
+            <p class="contact-card__note">Emergency service available 24/7</p>
+          </div>
+        </div>
+        <div class="contact__cta">
+          <a href="tel:5407187032" class="btn btn--primary btn--lg">Call Now — (540) 718-7032</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="18" fill="#3F6B3F"/>
+            <rect x="16" y="22" width="4" height="9" fill="#FAF7F0"/>
+            <polygon points="18,4 11,16 25,16" fill="#FAF7F0"/>
+            <polygon points="18,10 10,21 26,21" fill="#3F6B3F" stroke="#FAF7F0" stroke-width="0.5"/>
+          </svg>
+          <span>Favorite Tree Service, LLC</span>
+        </div>
+        <p class="footer__copy">3514 Ridge Rd, Barboursville, VA 22923 &middot; <a href="tel:5407187032">(540) 718-7032</a> &middot; <a href="mailto:favoritetreeservice@aol.com">favoritetreeservice@aol.com</a></p>
+        <p class="footer__legal">&copy; <span id="year"></span> Favorite Tree Service, LLC. All rights reserved. BBB Accredited Business.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Sticky nav scroll behavior
+    const nav = document.getElementById('nav');
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 80) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+      lastScrollY = y;
+    }, { passive: true });
+
+    // Mobile hamburger
+    const hamburger = document.querySelector('.nav__hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = !mobileNav.hidden;
+      mobileNav.hidden = isOpen;
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.hidden = true;
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          const navH = nav.getBoundingClientRect().height;
+          const top = target.getBoundingClientRect().top + window.scrollY - navH - 8;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+  <!-- wss-dream-forge-edit-widget -->
+  <script src="https://wss-dream-forge.vercel.app/widget/edit-widget.js"
+    data-site-id="favorite-tree-service"
+    data-factory="https://wss-dream-forge.vercel.app"
+    defer></script>
+</body>
+</html>
